@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Giới thiệu";
+}
+
+<div class="columns-container">
+    <div id="columns" class="container">
+
+        <div class="breadcrumb clearfix">
+            <a class="home" href="/" title="Trở về Trang chủ">
+                <i class="fa fa-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+            Giới thiệu
+        </div>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+            <div class="pull-left">
+                <a class="btn btn-primary" href="@("/Admin/CMSNews/Edit/" + OnlineStore.Infractructure.Utility.Define.ID_PAGE_INTRODUCTION.ToString())">Chỉnh sửa nội dung</a>
+            </div>
+        }
+
+        <div class="row">
+            <div class="large-left col-sm-12">
+                @Html.Raw(ViewBag.ContentNews)
+            </div>
+        </div>
+    </div>
+</div>

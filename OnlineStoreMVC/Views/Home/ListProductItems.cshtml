@@ -1,0 +1,24 @@
+﻿@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
+
+@foreach (OnlineStore.Model.ViewModel.ProductSummaryView item in @Model)
+{
+<div class="col-sm-4">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+            <div class="productinfo text-center">
+                <img src="@item.CoverImageUrl" alt="@item.Name" />
+                <h2>@item.Price</h2>
+                <p>@item.ShortDescription</p>
+                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+            </div>
+            <div class="product-overlay">
+                <div class="overlay-content">
+                    <h2>@item.Price</h2>
+                    <p>@item.Name</p>
+                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Xavia Decor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description" content="Xavia Decor là của hàng kinh doanh các sản phẩm trang trí nội thất nhập khẩu và nội địa có chất lượng cao, hoạt động từ cuối năm 2015. Trong suổt thời gian hoạt động từ khi thành lập, Cửa hàng chúng tôi đã nỗ lực không ngừng để có sự tăng trưởng liên tục và thành tích kinh doanh ấn tượng. Đến nay, Xavia Décor đã thực sự trở thành nhà cung cấp các sản phẩm trang trí nội thất hàng đầu với các thương hiệu sản phẩm uy tính với người tiêu dùng.">
+    <meta name="Keywords" content="xavia, trang trí nội thất, nội thất, đồ trang trí nội thất, trang tri noi that, noi that, do trang tri noi that">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://xaviadecor.com">
+    <meta property="og:title" content="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">
+    <meta property="og:image" content="http://xaviadecor.com/Content/Images/Banners/XaviaLogo.png">
+    <meta property="og:site_name" content="Xavia Decor">
+    <meta property="og:description" content="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="icon" type="image/ico" href="~/Content/Images/Banners/faviorIcon.jpg">
+    
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/webCss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @*<link href="~/Content/webcss/animate.css" rel="stylesheet" />
+    <link href="~/Content/webcss/main.css" rel="stylesheet" />
+    <link href="~/Content/webcss/responsive.css" rel="stylesheet" />
+    <link href="~/Content/webcss/default.css" rel="stylesheet" />
+    <link href="~/Content/webcss/component.css" rel="stylesheet" />
+    <script src="~/Scripts/webjs/jquery.scrollUp.min.js"></script>
+    <script src="~/Scripts/webjs/main.js"></script>*@
+    <link href="~/Content/webcss/style.css" rel="stylesheet" />
+    <link href="~/Content/webcss/font-awesome.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="~/Scripts/webjs/move-top.js"></script>
+    <script src="~/Scripts/webjs/easing.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        });
+    });
+    </script>
+    @RenderSection("css", required:false)
+    @RenderSection("scripts", required: false)
+</head>
+<body id="index" class="index hide-left-column hide-right-column lang_en one-column">
+    @RenderSection("CustomCss", required: false)
+    @RenderSection("CustomScript", required: false)
+    <div id="page">
+        @Html.Action("_HeaderPartial", "Home")
+
+        <div class="columns-container top-space-body">
+            @RenderBody()
+        </div>
+
+        @RenderPage("_FooterPartial.cshtml")
+    </div>
+</body>
+</html>
+

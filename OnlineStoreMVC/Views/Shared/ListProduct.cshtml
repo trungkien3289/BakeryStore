@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
+
+
+@foreach (var product in @Model)
+{
+    <div class="col-md-4 product-item-wrapper">
+        <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+                <div class="agile_top_brand_left_grid_pos">
+                    @*<img src="~/Content/Images/TestImages/offer.png" alt=" " class="img-responsive" />*@
+                </div>
+                <div class="agile_top_brand_left_grid1">
+                    <figure>
+                        <div class="snipcart-item block">
+                            <div class="snipcart-thumb">
+                                <a href="products.html"><img title="@product.Name " alt="@product.Name" src="@product.CoverImageUrl" /></a>
+                                <p>@product.Name</p>
+                                <h4>@product.Price</h4>
+                            </div>
+                            <div class="snipcart-details top_brand_home_details">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <input type="hidden" name="cmd" value="_cart" />
+                                        <input type="hidden" name="add" value="1" />
+                                        <input type="hidden" name="business" value=" " />
+                                        <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+                                        <input type="hidden" name="amount" value="20.99" />
+                                        <input type="hidden" name="discount_amount" value="1.00" />
+                                        <input type="hidden" name="currency_code" value="USD" />
+                                        <input type="hidden" name="return" value=" " />
+                                        <input type="hidden" name="cancel_return" value=" " />
+                                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+}

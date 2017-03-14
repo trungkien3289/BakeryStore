@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+}
+
+@section css{
+<link href="~/Content/webcss/skdslider.css" rel="stylesheet" />
+}
+
+@section scripts{
+
+<!-- top-header and slider -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+<script src="~/Scripts/webjs/minicart.min.js"></script>
+<script>
+    // Mini Cart
+    paypal.minicart.render({
+        action: '#'
+    });
+
+    if (~window.location.search.indexOf('reset=true')) {
+        paypal.minicart.reset();
+    }
+</script>
+<!-- main slider-banner -->
+<script src="~/Scripts/webjs/skdslider.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#demo1').skdslider({ 'delay': 5000, 'animationSpeed': 2000, 'showNextPrev': true, 'showPlayButton': true, 'autoSlide': true, 'animationType': 'fading' });
+
+        jQuery('#responsive').change(function () {
+            $('#responsive_wrapper').width(jQuery(this).val());
+        });
+    });
+</script>
+<!-- //main slider-banner --> 
+<script src="~/Content/plugins/slider-bar-library/plugins.js"></script>
+<script src="~/Content/plugins/slider-bar-library/sly.min.js"></script>
+}
+
+<!-- main-slider -->
+<ul id="demo1">
+    <li>
+        <img src="~/Content/Images/TestImages/11.jpg" alt="" />
+        <!--Slider Description example-->
+        <div class="slide-desc">
+            <h3>Buy Rice Products Are Now On Line With Us</h3>
+        </div>
+    </li>
+    <li>
+        <img src="~/Content/Images/TestImages/22.jpg" alt="" />
+        <div class="slide-desc">
+            <h3>Whole Spices Products Are Now On Line With Us</h3>
+        </div>
+    </li>
+
+    <li>
+        <img src="~/Content/Images/TestImages/44.jpg" alt="" />
+        <div class="slide-desc">
+            <h3>Whole Spices Products Are Now On Line With Us</h3>
+        </div>
+    </li>
+</ul>
+<!-- //main-slider -->
+<!-- //top-header and slider -->
+<!-- top-brands -->
+<div class="top-brands">
+    <div class="container">
+        <h2>SẢN PHẨM</h2>
+        <div class="grid_3 grid_5">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">BAKERY</a></li>
+                    <li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">KITCHEN TOOLS</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+                        <div class="agile-tp">
+                            <h5>Advertised this week</h5>
+                            <p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
+                        </div>
+                        <div class="list-product-container">
+                            @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListBakeryProducts)  <!-- list product -->
+                        </div>
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+                                <div class="paging-control-filtercontent pull-right"></div>
+                            </div>
+                        </div><!-- sort bar -->
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
+                        <div class="agile-tp">
+                            <h5>This week</h5>
+                            <p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
+                        </div>
+                        <div class="list-product-container">
+                            @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListKitChenTools)  <!-- list product -->
+                        </div>
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+                                <div class="paging-control-filtercontent pull-right"></div>
+                            </div>
+                        </div><!-- sort bar -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- new -->
+<div class="newproducts-w3agile">
+    <div class="container">
+        @Html.Partial("HorizontalListProductBar", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
+    </div>
+</div>
+<!-- //new -->
