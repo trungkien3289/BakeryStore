@@ -476,6 +476,23 @@ span.fa.fa-shopping-cart.my-cart-icon {
 }
 /*-- //header --*/
 /*--banner--*/
+.banner-wrapper{
+    position:relative;
+    display:block;
+}
+.banner-images{
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url('../../Content/Images/Banners/Banner.jpg');
+}
 .banner-info {
     margin:8em 0;
 	text-align:center;
