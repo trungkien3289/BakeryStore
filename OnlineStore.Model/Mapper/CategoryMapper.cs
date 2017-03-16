@@ -26,12 +26,15 @@ namespace OnlineStore.Model.Mapper
             return categoryView;
         }
 
-        public static IEnumerable<SummaryCategoryViewModel> ConvertToIndexCategoryViews(this IEnumerable<ecom_Categories> categories)
+        public static IList<SummaryCategoryViewModel> ConvertToIndexCategoryViews(this IEnumerable<ecom_Categories> categories)
         {
+            IList<SummaryCategoryViewModel> listCategories = new List<SummaryCategoryViewModel>();
             foreach (ecom_Categories category in categories)
             {
-                yield return category.ConvertToIndexCategoryView();
+                listCategories.Add(category.ConvertToIndexCategoryView());
             }
+
+            return listCategories;
         }
 
         /// <summary>

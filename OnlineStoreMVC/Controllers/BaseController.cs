@@ -70,7 +70,7 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.TopCategoryList = (new MenuService()).GetMenuByType((int)OnlineStore.Infractructure.Utility.Define.MenuEnum.User).Take(6).ToList();
         }
 
-        protected IEnumerable<SummaryCategoryViewModel> GetChildrenCategories(int parentId)
+        protected IList<SummaryCategoryViewModel> GetChildrenCategories(int parentId)
         {
             return service.GetCategoryChildrenById(parentId);
         }

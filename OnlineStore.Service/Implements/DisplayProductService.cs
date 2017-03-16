@@ -327,9 +327,10 @@ namespace OnlineStore.Service.Implements
             return categoryRepository.GetAllCategoriesWithoutDelete().ConvertToIndexCategoryViews();
         }
 
-        public IEnumerable<SummaryCategoryViewModel> GetCategoryChildrenById(int parentId)
+        public IList<SummaryCategoryViewModel> GetCategoryChildrenById(int parentId)
         {
-            return categoryRepository.GetChildrenByParentCategoryId(parentId).ConvertToIndexCategoryViews();
+            IEnumerable<ecom_Categories> subCategories = categoryRepository.GetChildrenByParentCategoryId(parentId);
+            return subCategories.ConvertToIndexCategoryViews();
         }
 
         /// <summary>

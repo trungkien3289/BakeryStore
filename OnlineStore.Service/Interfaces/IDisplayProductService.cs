@@ -18,7 +18,7 @@ namespace OnlineStore.Service.Interfaces
         IEnumerable<ProductSummaryView> GetAllNewProduct();
         IEnumerable<ProductSummaryView> GetAllBestSellProduct();
         IEnumerable<ProductSummaryView> GetListHighPriorityOrderProduct();
-        IEnumerable<SummaryCategoryViewModel> GetCategoryChildrenById(int parentId);
+        IList<SummaryCategoryViewModel> GetCategoryChildrenById(int parentId);
         IEnumerable<SummaryCategoryViewModel> GetTopCategories();
         SearchProductResponse SearchByProductName(SearchProductRequest request, SearchType searchType);
     }
