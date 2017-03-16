@@ -6,8 +6,8 @@
     bindEvents: function () {
         $("#thumbs_list_frame li").unbind("click").bind("click", function () {
             var imagePath = $(this).data("imagepath") || "/Content/Images/no-image.png";
-            $("#CoverImage").attr("src", imagePath);
-            $("#CoverImage").data("zoom-image", imagePath);
+            $("#picture-frame").attr("src", imagePath);
+            $("#picture-frame").data("zoom-image", imagePath);
             DetailProductManagement.initZoomImageControl();
         });
 
@@ -27,11 +27,15 @@
         }
     },
     initZoomImageControl: function () {
-        $('#CoverImage').elevateZoom({
-            zoomType: "inner",
-            cursor: "crosshair",
-            zoomWindowFadeIn: 500,
-            zoomWindowFadeOut: 750
+        //$('#CoverImage').elevateZoom({
+        //    zoomType: "inner",
+        //    cursor: "crosshair",
+        //    zoomWindowFadeIn: 500,
+        //    zoomWindowFadeOut: 750
+        //});
+
+        $("#picture-frame").zoomToo({
+            magnify: 1
         });
     }
 }

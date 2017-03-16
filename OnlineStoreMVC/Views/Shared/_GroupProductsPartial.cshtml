@@ -1,0 +1,47 @@
+﻿@model IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>
+@{
+    string Title = ViewData["Title"] != null ? (string)ViewData["Title"] : String.Empty;
+}
+
+<div class="container">
+    <div class="spec ">
+        <h3>@Title</h3>
+        <div class="ser-t">
+            <b></b>
+            <span><i></i></span>
+            <b class="line"></b>
+        </div>
+    </div>
+    <div class=" con-w3l">
+        @foreach (var item in @Model)
+        {
+            <div class="col-md-3 pro-1">
+                <div class="col-m">
+                    <a href="/Product/ProductDetails/@item.Id" class="offer-img">
+                        <img src="@item.CoverImageUrl" class="img-responsive" alt="">
+                        @if (@item.IsNew)
+                        {
+                            <div class="offer"><p><span>New</span></p></div>
+                        }
+                    </a>
+                    <div class="mid-1">
+                        <div class="women">
+                            <h6><a href="single.html">@item.Name</a></h6>
+                        </div>
+                        <div class="mid-2">
+                            <p><em class="item_price">@item.Price</em></p>
+                            <div class="block">
+                                <div class="starbox small ghosting"> </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="add add-2">
+                            <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@item.Id" data-name="@item.Name" data-summary="summary 1" data-price="20" data-quantity="1" data-image="@item.CoverImageUrl">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>

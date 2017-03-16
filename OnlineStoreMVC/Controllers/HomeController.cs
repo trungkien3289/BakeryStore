@@ -47,6 +47,8 @@ namespace OnlineStoreMVC.Controllers
         {
             PopulateNewProductList();
             PopulateBestSellProductList();
+            ViewBag.BakeryCategoryList = GetChildrenCategories(8);
+            ViewBag.KitchenToolsCategoryList = GetChildrenCategories(9);
             //PopulateHighPriorityOrderProductList();
             //PopulateCategoryList();
             //PopulateTopCategoryList();

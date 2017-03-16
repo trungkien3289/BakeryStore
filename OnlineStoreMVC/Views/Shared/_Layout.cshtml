@@ -26,37 +26,55 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
 
-
-    @*<link href="~/Content/webcss/animate.css" rel="stylesheet" />
-    <link href="~/Content/webcss/main.css" rel="stylesheet" />
-    <link href="~/Content/webcss/responsive.css" rel="stylesheet" />
-    <link href="~/Content/webcss/default.css" rel="stylesheet" />
-    <link href="~/Content/webcss/component.css" rel="stylesheet" />
-    <script src="~/Scripts/webjs/jquery.scrollUp.min.js"></script>
-    <script src="~/Scripts/webjs/main.js"></script>*@
-    <link href="~/Content/webcss/style.css" rel="stylesheet" />
-    <link href="~/Content/webcss/font-awesome.css" rel="stylesheet" />
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <script type="application/x-javascript">
-        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-               function hideURLbar(){ window.scrollTo(0,1); } </script>
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/webcss/style.css" rel="stylesheet" />
+    <!-- start-smoth-scrolling -->
     <script src="~/Scripts/webjs/move-top.js"></script>
     <script src="~/Scripts/webjs/easing.js"></script>
     <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $(".scroll").click(function (event) {
-            event.preventDefault();
-            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
         });
-    });
     </script>
+    <!-- start-smoth-scrolling -->
+    <link href="~/Content/webcss/font-awesome.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <!--- start-rate---->
+    <script src="~/Scripts/webjs/jstarbox.js"></script>
+    <link href="~/Content/webcss/jstarbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery('.starbox').each(function () {
+                var starbox = jQuery(this);
+                starbox.starbox({
+                    average: starbox.attr('data-start-value'),
+                    changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+                    ghosting: starbox.hasClass('ghosting'),
+                    autoUpdateAverage: starbox.hasClass('autoupdate'),
+                    buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+                    stars: starbox.attr('data-star-count') || 5
+                }).bind('starbox-value-changed', function (event, value) {
+                    if (starbox.hasClass('random')) {
+                        var val = Math.random();
+                        starbox.next().text(' ' + val);
+                        return val;
+                    }
+                })
+            });
+        });
+    </script>
+    <!---//End-rate---->
     @RenderSection("css", required:false)
     @RenderSection("scripts", required: false)
 </head>
 <body id="index" class="index hide-left-column hide-right-column lang_en one-column">
-    @RenderSection("CustomCss", required: false)
-    @RenderSection("CustomScript", required: false)
     <div id="page">
         @Html.Action("_HeaderPartial", "Home")
 

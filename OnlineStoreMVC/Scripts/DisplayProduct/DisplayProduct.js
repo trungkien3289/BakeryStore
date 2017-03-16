@@ -58,15 +58,15 @@ var DisplayProductManagement = {
         // init paging control
         this.initPagingControl(numberItems, this.model.NumberOfResultsPerPage);
         // Init price range control
-        var priceRangeElement = $('#Sl_PriceRange').slider({
-            from: 5000,
-            to: 150000,
-            heterogeneity: ['50/50000'],
-            step: 1000,
-            dimension: '&nbsp;$',
-            onstatechange: function (value) { console.log(value) }
-        });
-        this.controls.priceRange = priceRangeElement.data("slider");
+        //var priceRangeElement = $('#Sl_PriceRange').slider({
+        //    from: 5000,
+        //    to: 150000,
+        //    heterogeneity: ['50/50000'],
+        //    step: 1000,
+        //    dimension: '&nbsp;$',
+        //    onstatechange: function (value) { console.log(value) }
+        //});
+        //this.controls.priceRange = priceRangeElement.data("slider");
 
         //Init layout
         if (numberItems != null && numberItems == 0) {
@@ -237,46 +237,33 @@ var DisplayProductManagement = {
         /// <returns>N/A</returns>
 
         var template = "";
-        template += "    <div class=\"col-md-4 product-item-wrapper\">";
-        template += "        <div class=\"hover14 column\">";
-        template += "            <div class=\"agile_top_brand_left_grid\">";
-        template += "                <div class=\"agile_top_brand_left_grid_pos\">";
-        template += "                    <img src=\"~\/Content\/Images\/TestImages\/offer.png\" alt=\" \" class=\"img-responsive\" \/>";
+        template += "<div class=\"col-md-3 pro-1\">";
+        template += "        <div class=\"col-m\">";
+        template += "            <a href=\"/Product/ProductDetails?id=" + product.Id + "\" class=\"offer-img\">";
+        template += "                <img src=\"" + product.CoverImageUrl + "\" class=\"img-responsive\" alt=\"\">";
+        if (product.IsNew) {
+            template += "                <div class=\"offer\"><p><span>New<\/span><\/p><\/div>";
+        }
+        template += "            <\/a>";
+        template += "            <div class=\"mid-1\">";
+        template += "                <div class=\"women\">";
+        template += "                    <h6><a href=\"single.html\">" + product.Name + "<\/a>(1 kg)<\/h6>";
         template += "                <\/div>";
-        template += "                <div class=\"agile_top_brand_left_grid1\">";
-        template += "                    <figure>";
-        template += "                        <div class=\"snipcart-item block\">";
-        template += "                            <div class=\"snipcart-thumb\">";
-        template += "                                <a href=\"products.html\"><img title=\"" + product.Name + " \" alt=\"" + product.Name + "\" src=\"" + product.CoverImageUrl + "\" \/><\/a>";
-        template += "                                <p>" + product.Name + "<\/p>";
-        template += "                                <h4>" + product.Price + "<\/h4>";
-        template += "                            <\/div>";
-        template += "                            <div class=\"snipcart-details top_brand_home_details\">";
-        template += "                                <form action=\"#\" method=\"post\">";
-        template += "                                    <fieldset>";
-        template += "                                        <input type=\"hidden\" name=\"cmd\" value=\"_cart\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"add\" value=\"1\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"business\" value=\" \" \/>";
-        template += "                                        <input type=\"hidden\" name=\"item_name\" value=\"Fortune Sunflower Oil\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"amount\" value=\"20.99\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"discount_amount\" value=\"1.00\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"currency_code\" value=\"USD\" \/>";
-        template += "                                        <input type=\"hidden\" name=\"return\" value=\" \" \/>";
-        template += "                                        <input type=\"hidden\" name=\"cancel_return\" value=\" \" \/>";
-        template += "                                        <input type=\"submit\" name=\"submit\" value=\"Add to cart\" class=\"button\" \/>";
-        template += "                                    <\/fieldset>";
-        template += "                                <\/form>";
-        template += "                            <\/div>";
-        template += "                        <\/div>";
-        template += "                    <\/figure>";
+        template += "                <div class=\"mid-2\">";
+        template += "                    <p><em class=\"item_price\">" + product.Price + "<\/em><\/p>";
+        template += "                    <div class=\"block\">";
+        template += "                        <div class=\"starbox small ghosting\"> <\/div>";
+        template += "                    <\/div>";
+        template += "                    <div class=\"clearfix\"><\/div>";
+        template += "                <\/div>";
+        template += "                <div class=\"add\">";
+        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Add to Cart<\/button>";
         template += "                <\/div>";
         template += "            <\/div>";
         template += "        <\/div>";
         template += "    <\/div>";
 
-
         return template;
-
     },
     getNoResultMessage:function(){
         return "<li class='noresult-panel'>Không có sản phẩm nào được tìm thấy</li>";

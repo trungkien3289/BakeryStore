@@ -1,0 +1,23 @@
+﻿@model List<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>
+
+@{
+    var numberOfSubCatefories = 0;
+    if (Model != null)
+    {
+        numberOfSubCatefories = Model.Count();
+    }
+    var numberOfPanel = numberOfSubCatefories / 4 + 1;
+}
+
+@for (int i = 0; i < numberOfPanel; i++)
+{
+    <div class="col-sm-3">
+        <ul class="multi-column-dropdown">
+            @for (int j = i * 4; j < i * 4 && j < numberOfSubCatefories; j++)
+            {
+                <li><a href="/Product/ProductDetails/@Model[j].Id"><i class="fa fa-angle-right" aria-hidden="true"></i>@Model[j].Name</a></li>
+            }
+        </ul>
+    </div>
+}
+
