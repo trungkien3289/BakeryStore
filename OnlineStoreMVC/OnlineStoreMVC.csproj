@@ -181,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1832,6 +1833,8 @@
     <Content Include="Areas\Admin\Views\ProductGroup\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroup\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductGroup\Index.cshtml" />
+    <Content Include="Scripts\DisplayProduct\CheckOut.js" />
+    <Content Include="wishlist.html" />
     <None Include="Properties\PublishProfiles\xaviadecor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisplayProduct\DetailProduct.js" />
@@ -2031,6 +2034,7 @@
     <Content Include="Views\Shared\_GroupProductsPartial.cshtml" />
     <Content Include="Views\Shared\_ListSubCategory.cshtml" />
     <Content Include="Views\Product\_CategoryTreeView.cshtml" />
+    <Content Include="Views\Order\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

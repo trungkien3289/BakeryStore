@@ -4,12 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<link href="~/Content/display-product/product.css" rel="stylesheet" />
-<link href="~/Content/display-product/detail-product.css" rel="stylesheet" />
-<script src="~/Content/plugins/magnifying-glass/prefixfree.js"></script>
-<script src="~/Content/plugins/slider-bar-library/plugins.js"></script>
-<script src="~/Content/plugins/slider-bar-library/sly.min.js"></script>
-<script src="~/Content/plugins/zoom-image/jquery.elevatezoom.js"></script>*@
 <script src="~/Scripts/DisplayProduct/DetailProduct.js"></script>
 <link href="~/Content/display-product/detail-product.css" rel="stylesheet" />
 <script src="~/Scripts/webjs/jquery.zoomtoo.js"></script>
@@ -63,7 +57,7 @@
                 <div class="single-right">
                     <h3>@Model.Name</h3>
                     <div class="pr-single">
-                        <p class="reduced ">@Model.Price</p>
+                        <p class="reduced ">@Model.PriceFormatCurrency</p>
                     </div>
                     <div class="block block-w3">
                         <div class="starbox small ghosting"> </div>
@@ -76,7 +70,7 @@
                         <li><a href="#" class="icon dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
                     </ul>
                     <div class="add add-3">
-                        <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@Model.Id" data-name="@Model.Name" data-summary="summary 1" data-price="20" data-quantity="1" data-image="@Model.CoverImageUrl">Add to Cart</button>
+                        <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@Model.Id" data-name="@Model.Name" data-summary="@Model.Description" data-price="@Model.Price" data-quantity="1" data-image="@Model.CoverImageUrl">Add to Cart</button>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -128,9 +122,8 @@
             classCartBadge: 'my-cart-badge',
             affixCartIcon: true,
             checkoutCart: function (products) {
-                $.each(products, function () {
-                    console.log(this);
-                });
+                console.log(products);
+                window.location.replace("/Order/CheckOut");
             },
             clickOnAddToCart: function ($addTocart) {
                 goToCartIcon($addTocart);

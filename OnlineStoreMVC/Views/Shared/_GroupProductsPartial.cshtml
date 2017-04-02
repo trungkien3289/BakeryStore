@@ -30,12 +30,12 @@
                         </div>
                         <div class="mid-2">
                             <div class="item-price-productItem">
-                                @item.Price
+                                @item.PriceFormatCurrency
                                 </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="add add-2">
-                            <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@item.Id" data-name="@item.Name" data-summary="summary 1" data-price="20" data-quantity="1" data-image="@item.CoverImageUrl">Add to Cart</button>
+                            <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@item.Id" data-name="@item.Name" data-summary="@item.ShortDescription" data-price="@item.Price" data-quantity="1" data-image="@item.CoverImageUrl">Add to Cart</button>
                         </div>
                     </div>
                 </div>

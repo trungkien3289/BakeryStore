@@ -191,13 +191,13 @@
         }
 
         $('.my-cart-btn').myCart({
+            currencySymbol: 'VND',
             classCartIcon: 'my-cart-icon',
             classCartBadge: 'my-cart-badge',
             affixCartIcon: true,
             checkoutCart: function (products) {
-                $.each(products, function () {
-                    console.log(this);
-                });
+                console.log(products);
+                window.location.replace("/Order/CheckOut");
             },
             clickOnAddToCart: function ($addTocart) {
                 goToCartIcon($addTocart);
@@ -210,6 +210,5 @@
                 return total * 1;
             }
         });
-
     });
 </script>
