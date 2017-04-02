@@ -6,71 +6,67 @@
 }
 
 <link href="~/Content/plugins/pagingcontrol/simplePagination.css" rel="stylesheet" />
+<link href="~/Content/plugins/price-range/price-range.css" rel="stylesheet" />
+<link href="~/Content/display-product/display-product-view.css" rel="stylesheet" />
 <script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
+<script src="~/Content/plugins/price-range/price-range.js"></script>
 <script src="~/Scripts/DisplayProduct/DisplayProduct.js"></script>
 <script src="~/Content/plugins/spin/spin.min.js"></script>
 
 <!--content-->
-@*<div class="kic-top ">
-    <div class="container ">
-        <div class="kic ">
-            <h3>Popular Categories</h3>
-
-        </div>
-        <div class="col-md-4 kic-top1">
-            <a href="single.html">
-                <img src="images/ki.jpg" class="img-responsive" alt="">
-            </a>
-            <h6>Dal</h6>
-            <p>Nam libero tempore</p>
-        </div>
-        <div class="col-md-4 kic-top1">
-            <a href="single.html">
-                <img src="images/ki1.jpg" class="img-responsive" alt="">
-            </a>
-            <h6>Snacks</h6>
-            <p>Nam libero tempore</p>
-        </div>
-        <div class="col-md-4 kic-top1">
-            <a href="single.html">
-                <img src="images/ki2.jpg" class="img-responsive" alt="">
-            </a>
-            <h6>Spice</h6>
-            <p>Nam libero tempore</p>
-        </div>
-    </div>
-</div>*@
-
-<!--content-->
 <div class="product">
     <div class="container">
-        <div class="spec ">
-            <h3>Products</h3>
-            <div class="ser-t">
-                <b></b>
-                <span><i></i></span>
-                <b class="line"></b>
+        <div class="col-md-3 col-sm-3 col-xs-12 b-filterItems">
+            <div class="filter-header">
+                <div class="filter-decorator-first-header"></div>
+                <div class="filter-decorator-second-header"></div>
+                <div class="filter-title">Categories</div>
+            </div>
+            <div class="category-filterItems">
+                @Html.Partial("_CategoryTreeView", (IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>)ViewBag.CategoryTreeViewDataSource, new ViewDataDictionary { { "SelectedCategory", Model.SelectedCategory } })
+            </div>
+            <div class="filter-header">
+                <div class="filter-decorator-first-header"></div>
+                <div class="filter-decorator-second-header"></div>
+                <div class="filter-title">Price</div>
+            </div>
+            <div class="price-filterItems">
+                <div class="price-range-input-panel">
+                    <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                    <br />
+                    <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                </div>
             </div>
         </div>
-        <div class="products-right-grids">
-            <span class="display hidden-xs pull-right">Có @Model.TotalProducts sản phẩm</span>
-            <div class="sorting">
-                <label>Sắp xếp theo</label>
-                @Html.DropDownList("SortProductOptionsSelectListItems")
+        <div class="col-md-9 col-sm-9 col-xs-12 b-productItems">
+                <div class="spec ">
+                    <h3>Products</h3>
+                    <div class="ser-t">
+                        <b></b>
+                        <span><i></i></span>
+                        <b class="line"></b>
+                    </div>
+                </div>
+                <div class="products-right-grids">
+                    <span class="display hidden-xs pull-right">Có @Model.TotalProducts sản phẩm</span>
+                    <div class="sorting">
+                        <label>Sắp xếp theo</label>
+                        @Html.DropDownList("SortProductOptionsSelectListItems")
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+                <div class=" con-w3l agileinf list-product-container">
+                    @Html.Partial("ListProduct", Model.Products)
+                </div>
+                <div class="clearfix"></div>
+                <div class="content_sortPagiBar">
+                    <div class="bottom-pagination-content clearfix">
+                        <div class="paging-control-filtercontent pull-right"></div>
+                    </div>
+                </div><!-- sort bar -->
+                <div class="clearfix"> </div>
             </div>
         </div>
-        <div class="clearfix"> </div>
-        <div class=" con-w3l agileinf list-product-container">
-            @Html.Partial("ListProduct", Model.Products)
-        </div>
-        <div class="clearfix"></div>
-        <div class="content_sortPagiBar">
-            <div class="bottom-pagination-content clearfix">
-                <div class="paging-control-filtercontent pull-right"></div>
-            </div>
-        </div><!-- sort bar -->
-        <div class="clearfix"> </div>
-    </div>
 </div>
 
 <script>
@@ -98,7 +94,6 @@
 <script src="~/Scripts/webjs/jquery.mycart.js"></script>
 <script type="text/javascript">
     $(function () {
-
         var goToCartIcon = function ($addTocartBtn) {
             var $cartIcon = $(".my-cart-icon");
             var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });

@@ -18,6 +18,22 @@ namespace OnlineStore.Model.ViewModel
         public string Status { get; set; }
     }
 
+    public class SummaryCategoryTreeViewItemModel
+    {
+        public SummaryCategoryTreeViewItemModel()
+        {
+            Items = new List<SummaryCategoryTreeViewItemModel>();
+        }
+        public int Id { get; set; }
+        [DisplayName("TÊN DANH MỤC")]
+        public string Name { get; set; }
+        [DisplayName("ƯU TIÊN SẮP XẾP")]
+        public Nullable<int> SortOrder { get; set; }
+        [DisplayName("TRẠNG THÁI")]
+        public string Status { get; set; }
+        public IEnumerable<SummaryCategoryTreeViewItemModel> Items { get; set; }
+    }
+
     public class DetailCategoryViewModel
     {
         public int Id { get; set; }

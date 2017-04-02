@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineStore.Model.Mapper;
 using System.IO;
+using OnlineStore.Infractructure.Helper;
 
 namespace OnlineStore.Service.Implements
 {
@@ -65,7 +66,10 @@ namespace OnlineStore.Service.Implements
             {
                 searchQuery = searchQuery.And(p => p.Name.Contains(request.SearchString));
             }
-            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(request.CategoryId));
+            if (request.CategoryId!=null)
+            {
+                searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains((int)request.CategoryId));
+            }
 
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
                 filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images");
@@ -331,6 +335,49 @@ namespace OnlineStore.Service.Implements
         {
             IEnumerable<ecom_Categories> subCategories = categoryRepository.GetChildrenByParentCategoryId(parentId);
             return subCategories.ConvertToIndexCategoryViews();
+        }
+
+        /// <summary>
+        /// Get treeview data source of category
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<SummaryCategoryTreeViewItemModel> GetCategoryTreeViewData()
+        {
+            IEnumerable<SummaryCategoryTreeViewItemModel> retList = new List<SummaryCategoryTreeViewItemModel>();
+            // get list root categories
+            IEnumerable<ecom_Categories> mainCategories = categoryRepository.GetChildrenByParentCategoryId(null);
+            retList = from category in mainCategories
+                      select new SummaryCategoryTreeViewItemModel
+                      {
+                          Id = category.Id,
+                          Name = category.Name,
+                          SortOrder = category.SortOrder,
+                          Status = EnumHelper.GetDescriptionFromEnum((Define.Status)category.Status),
+                          Items = GetChildrenCategoriesOfTreeView(category.Id)
+                      };
+
+            return retList;
+        }
+
+        /// <summary>
+        /// Get List category childrent items of a parent category, that using for build category treeview
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <returns></returns>
+        public IEnumerable<SummaryCategoryTreeViewItemModel> GetChildrenCategoriesOfTreeView(int parentId)
+        {
+            IEnumerable<SummaryCategoryTreeViewItemModel> retList = new List<SummaryCategoryTreeViewItemModel>();
+            IEnumerable<ecom_Categories> subCategories = categoryRepository.GetChildrenByParentCategoryId(parentId);
+            retList = from category in subCategories
+                      select new SummaryCategoryTreeViewItemModel
+                      {
+                          Id = category.Id,
+                          Name = category.Name,
+                          SortOrder = category.SortOrder,
+                          Status = EnumHelper.GetDescriptionFromEnum((Define.Status)category.Status)
+                      };
+
+            return retList;
         }
 
         /// <summary>

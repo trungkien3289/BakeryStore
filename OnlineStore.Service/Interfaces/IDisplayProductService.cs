@@ -21,5 +21,6 @@ namespace OnlineStore.Service.Interfaces
         IList<SummaryCategoryViewModel> GetCategoryChildrenById(int parentId);
         IEnumerable<SummaryCategoryViewModel> GetTopCategories();
         SearchProductResponse SearchByProductName(SearchProductRequest request, SearchType searchType);
+        IEnumerable<SummaryCategoryTreeViewItemModel> GetCategoryTreeViewData();
     }
 }

@@ -58,15 +58,20 @@ var DisplayProductManagement = {
         // init paging control
         this.initPagingControl(numberItems, this.model.NumberOfResultsPerPage);
         // Init price range control
-        //var priceRangeElement = $('#Sl_PriceRange').slider({
-        //    from: 5000,
-        //    to: 150000,
-        //    heterogeneity: ['50/50000'],
-        //    step: 1000,
-        //    dimension: '&nbsp;$',
-        //    onstatechange: function (value) { console.log(value) }
-        //});
-        //this.controls.priceRange = priceRangeElement.data("slider");
+        var priceRangeElement = $('#Sl_PriceRange').slider({
+            from: 5000,
+            to: 150000,
+            heterogeneity: ['50/50000'],
+            step: 1000,
+            dimension: '&nbsp;$',
+            onstatechange: function (value) { console.log(value) }
+        }).on('slideStop', function (ev) {
+            var priceRange = ev.value;
+            var minPrice = priceRange[0];
+            var maxPrice = priceRange[1];
+            DisplayProductManagement.updatePriceRangeFilter(minPrice, maxPrice);
+        });
+        this.controls.priceRange = priceRangeElement.data("slider");
 
         //Init layout
         if (numberItems != null && numberItems == 0) {
@@ -93,17 +98,17 @@ var DisplayProductManagement = {
     },
     bindEvents: function () {
         // brand checkboxs
-        $("#layered_block_left input:checkbox.ckb-brand-filtercontent").unbind("change").bind("change", function (sender) {
-            var isCheck = $(this).is(":checked");
-            var brandId = $(this).data("id");
-            DisplayProductManagement.updateSelectedBrandList(brandId, isCheck);
-        });
-        // filter by price
-        $("#Btn_FilterAfterPrice").unbind("click").bind("click", function () {
-            var priceRange = DisplayProductManagement.controls.priceRange.value;
-            var minPrice = priceRange[0];
-            var maxPrice = priceRange[1];
-            DisplayProductManagement.updatePriceRangeFilter(minPrice, maxPrice);
+        //$("#layered_block_left input:checkbox.ckb-brand-filtercontent").unbind("change").bind("change", function (sender) {
+        //    var isCheck = $(this).is(":checked");
+        //    var brandId = $(this).data("id");
+        //    DisplayProductManagement.updateSelectedBrandList(brandId, isCheck);
+        //});
+
+        // bind event for category item
+        $(".b-filterItems .category-filterItems .category-link").unbind("click").bind("click", function () {
+            $(".b-filterItems .category-filterItems .category-link").removeClass("active");
+            $(this).addClass("active");
+            DisplayProductManagement.updateCategoryFilter($(this).data("id"));
         });
 
         // sort
@@ -154,6 +159,16 @@ var DisplayProductManagement = {
 
         DisplayProductManagement.model.BeginPrice = minPrice;
         DisplayProductManagement.model.EndPrice = maxPrice;
+        DisplayProductManagement.updateListProducts();
+    },
+    updateCategoryFilter:function(categoryId){
+        /// <summary>
+        /// Update sort type in filter model 
+        /// </summary>
+        /// <param>N/A</param>
+        /// <returns>N/A</returns>
+
+        DisplayProductManagement.model.CategoryId = categoryId ? categoryId : null;
         DisplayProductManagement.updateListProducts();
     },
     updateSortBy: function (sortType) {
@@ -218,7 +233,6 @@ var DisplayProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        debugger
         $(".list-product-container").empty();
         if (products && products.length == 0) {
             $(".list-product-container").append(DisplayProductManagement.getNoResultMessage());
@@ -246,14 +260,11 @@ var DisplayProductManagement = {
         }
         template += "            <\/a>";
         template += "            <div class=\"mid-1\">";
-        template += "                <div class=\"women\">";
-        template += "                    <h6><a href=\"single.html\">" + product.Name + "<\/a>(1 kg)<\/h6>";
+        template += "                <div class=\"item-name-productItem\">";
+        template += "                    <h6><a title=" + product.Name + " href=\"/Product/ProductDetails?id=" + product.Id + "\">" + product.Name + "<\/a><\/h6>";
         template += "                <\/div>";
         template += "                <div class=\"mid-2\">";
-        template += "                    <p><em class=\"item_price\">" + product.Price + "<\/em><\/p>";
-        template += "                    <div class=\"block\">";
-        template += "                        <div class=\"starbox small ghosting\"> <\/div>";
-        template += "                    <\/div>";
+        template += "<div class=\"item-price-productItem\">"+product.Price+"<\/div>";
         template += "                    <div class=\"clearfix\"><\/div>";
         template += "                <\/div>";
         template += "                <div class=\"add\">";
@@ -270,7 +281,7 @@ var DisplayProductManagement = {
     },
     updateModelAndLayout: function (model) {
         // update title bar
-        $("#center_column .heading-counter").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
+        $(".b-productItems .products-right-grids .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
         // update paging control
         DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.NumberOfResultsPerPage);
     },

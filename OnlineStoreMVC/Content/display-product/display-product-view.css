@@ -8,7 +8,7 @@
 .price-range-input-panel{
     display:inline-block;
     float:left;
-    width:196px
+    /*width:196px*/
 }
 .btn-filter-after-price-wrapper{
     display:inline-block;
@@ -61,8 +61,6 @@
 
 /* css for list product on main content panel */
 .productimage-listproduct-displayproductview{
-    /*width:250px!important;
-    height:250px!important;*/
     max-width: 100%!important;
     max-height: 250px!important;
 }
@@ -78,3 +76,61 @@ ul.product_list.grid > li .product-container .product-image-container.image-cont
 .left-category-link-displayproduct:hover{
     color:#630a34;
 }
+
+/* start category css */
+.category-filterItems li{
+    list-style: square url("../Images/Common/list-style.png");
+}
+
+.sub-category-list{
+    margin-left:15px;
+}
+
+.category-link{
+    cursor:pointer;
+}
+
+.category-link.active{
+    color:#039445
+}
+
+.category-filterItems{
+    margin-left:20px;
+}
+
+/* end category css */
+/* start filter panel*/
+    .filter-decorator-first-header{
+        display:inline-block;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #039445;
+        border-left: 2px solid #039445;
+        transform: rotate(-45deg) translate3d(0, 0, 0);
+    }
+
+    .filter-decorator-second-header{    
+        display:inline-block;
+        width: 15px;
+        height: 15px;
+        border-top: 2px solid #039445;
+        border-left: 2px solid #039445;
+        transform: rotate(-45deg) translate3d(0, 0, 0);
+    }
+
+    .filter-title{
+        display:inline-block;
+        width:100px;
+        color:#039445;
+        font-weight:500;
+        text-transform:uppercase;
+    }
+
+    .filter-header{
+        display:block;
+        height:20px;
+        margin:10px 0 5px 0;
+    }
+
+/* end filter panel*/
+

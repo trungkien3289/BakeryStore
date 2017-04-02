@@ -3,7 +3,7 @@
 
 @foreach (var product in @Model)
 {
-    <div class="col-md-3 pro-1">
+    <div class="col-md-3 pro-1 b-productItem">
         <div class="col-m">
             <a href="/Product/ProductDetails?id=@product.Id" class="offer-img">
                 <img src="@product.CoverImageUrl" class="img-responsive" alt="">
@@ -13,13 +13,12 @@
                 }
             </a>
             <div class="mid-1">
-                <div class="women">
-                    <h6><a href="/Product/ProductDetails?id=@product.Id">@product.Name</a></h6>
+                <div class="item-name-productItem">
+                    <h6><a title="@product.Name" href="/Product/ProductDetails?id=@product.Id">@product.Name</a></h6>
                 </div>
                 <div class="mid-2">
-                    <p><em class="item_price">@product.Price</em></p>
-                    <div class="block">
-                        <div class="starbox small ghosting"> </div>
+                    <div class="item-price-productItem">
+                        @product.Price
                     </div>
                     <div class="clearfix"></div>
                 </div>

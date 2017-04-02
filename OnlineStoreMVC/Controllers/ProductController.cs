@@ -120,6 +120,14 @@ namespace OnlineStoreMVC.Controllers
             ViewBag.SortProductOptionsSelectListItems = items;
         }
 
+        /// <summary>
+        /// Populate category treeview data source
+        /// </summary>
+        protected void PopulateCategoryTreeViewDataSource()
+        {
+            ViewBag.CategoryTreeViewDataSource = service.GetCategoryTreeViewData();
+        }
+
         #endregion
 
         #region controller actions
@@ -148,8 +156,7 @@ namespace OnlineStoreMVC.Controllers
             GetProductsByCategoryResponse response = service.GetProductsByCategory(request);
             PopulateStatusDropDownList();
             PopulateNewProductList();
-            //PopulateBestSellProductList();
-            //PopulateCategoryList();
+            PopulateCategoryTreeViewDataSource();
             ViewBag.BakeryCategoryList = GetChildrenCategories(8);
             ViewBag.KitchenToolsCategoryList = GetChildrenCategories(9);
 
@@ -221,7 +228,7 @@ namespace OnlineStoreMVC.Controllers
                     }
                 case SearchType.SearchString:
                     {
-                        @ViewBag.SearchTitle = "Từ khóa : "+request.SearchString;
+                        @ViewBag.SearchTitle = request.SearchString;
                         break;
                     }
                 case SearchType.NewProducts:

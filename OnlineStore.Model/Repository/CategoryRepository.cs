@@ -49,9 +49,9 @@ namespace OnlineStore.Model.Repository
             return dbSet.Where(c =>c.Id == id && c.Status != (int)Define.Status.Delete).FirstOrDefault();
         }
 
-        public IEnumerable<ecom_Categories> GetChildrenByParentCategoryId(int parentId)
+        public IEnumerable<ecom_Categories> GetChildrenByParentCategoryId(int? parentId)
         {
-            return dbSet.Where(c => c.ParentId == parentId).ToList();
+            return dbSet.Where(c => c.ParentId == parentId && c.Status != (int)Define.Status.Delete).ToList();
         }
 
         /// <summary>

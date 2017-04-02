@@ -16,7 +16,7 @@ namespace OnlineStore.Service.Messaging
             BrandIds = new List<int>();
         }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public List<int> BrandIds { get; set; }
         public ProductsSortBy SortBy { get; set; }
         public decimal? BeginPrice { get; set; }
@@ -30,7 +30,7 @@ namespace OnlineStore.Service.Messaging
     public class GetProductsByCategoryResponse
     {
         public string SelectedCategoryName { get; set; }
-        public int SelectedCategory { get; set; }
+        public int? SelectedCategory { get; set; }
         public decimal? BeginPrice { get; set; }
         public decimal? EndPrice { get; set; }
         public List<int> BrandIds { get; set; }

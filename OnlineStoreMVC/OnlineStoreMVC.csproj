@@ -590,6 +590,7 @@
     <Content Include="Content\Images\CMSNewsImages\item_0_noi-that-nha-rong-6-356x220.jpg" />
     <Content Include="Content\Images\CMSNewsImages\item_0_thiet-ke-nha-o-theo-phong-cach-thon-da-3-356x220.jpg" />
     <Content Include="Content\Images\CMSNewsImages\item_0_XaviaLogo.png" />
+    <Content Include="Content\Images\Common\list-style.png" />
     <Content Include="Content\Images\icon_gototop.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\ProductImages\LargeImages\ProductImage_0_13318493_1755331161404130_1419943251_n.jpg" />
@@ -807,8 +808,6 @@
     <Content Include="Content\Images\TestImages\wi2.png" />
     <Content Include="Content\ionicons\2.0.1\css\ionicons.min.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
-    <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.js" />
@@ -1160,15 +1159,6 @@
     <Content Include="Content\plugins\ckeditor\skins\moono\images\lock.png" />
     <Content Include="Content\plugins\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Content\plugins\ckeditor\styles.js" />
-    <Content Include="Content\plugins\colorpicker\bootstrap-colorpicker.css" />
-    <Content Include="Content\plugins\colorpicker\bootstrap-colorpicker.js" />
-    <Content Include="Content\plugins\colorpicker\bootstrap-colorpicker.min.css" />
-    <Content Include="Content\plugins\colorpicker\bootstrap-colorpicker.min.js" />
-    <Content Include="Content\plugins\colorpicker\img\alpha-horizontal.png" />
-    <Content Include="Content\plugins\colorpicker\img\alpha.png" />
-    <Content Include="Content\plugins\colorpicker\img\hue-horizontal.png" />
-    <Content Include="Content\plugins\colorpicker\img\hue.png" />
-    <Content Include="Content\plugins\colorpicker\img\saturation.png" />
     <Content Include="Content\plugins\datatables\dataTables.bootstrap.css" />
     <Content Include="Content\plugins\datatables\dataTables.bootstrap.js" />
     <Content Include="Content\plugins\datatables\dataTables.bootstrap.min.js" />
@@ -2040,6 +2030,7 @@
     <Content Include="Views\Shared\_ListNewProduct.cshtml" />
     <Content Include="Views\Shared\_GroupProductsPartial.cshtml" />
     <Content Include="Views\Shared\_ListSubCategory.cshtml" />
+    <Content Include="Views\Product\_CategoryTreeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

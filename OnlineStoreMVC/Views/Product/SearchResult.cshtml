@@ -9,65 +9,134 @@
 <link href="~/Content/display-product/display-product-view.css" rel="stylesheet" />
 <link href="~/Content/display-product/search-result.css" rel="stylesheet" />
 <script src="~/Scripts/DisplayProduct/SearchProductResult.js"></script>
+<script src="~/Content/plugins/spin/spin.min.js"></script>
 
-<div class="columns-container">
-    <div id="columns" class="container">
-        <div class="breadcrumb clearfix">
-            <a class="home" href="/" title="Trở về Trang chủ">
-                <i class="fa fa-home"></i>
-            </a>
-            <span class="navigation-pipe">&gt;</span>
-            Tìm kiếm
-        </div><!-- breadcrumb -->
-        <div class="row">
-            <!-- content -->
-            <div class="large-left col-sm-12">
-                <div class="row">
-                    <div id="center_column" class="col-xs-12 col-sm-12 accordionBox">
-                        <h1 class="page-heading product-listing">
-                            <span class="cat-name">@ViewBag.SearchTitle </span>
-                            <span class="heading-counter">Có @Model.NumberOfTitlesFound sản phẩm</span>
-                        </h1> <!-- title category panel -->
-                        <div class="content_sortPagiBar clearfix">
-                            <!-- content filter-display bar -->
-                            <div class="sortPagiBar clearfix">
-                                <ul class="display hidden-xs">
-                                    <li class="display-title">View:</li>
-                                    <li id="grid" class="selected">
-                                        <a rel="nofollow" href="#" title="Grid">
-                                            <i class="fa fa-th-large"></i>
-                                            Grid
-                                        </a>
-                                    </li>
-                                    <li id="list">
-                                        <a rel="nofollow" href="#" title="List">
-                                            <i class="fa fa-th-list"></i>
-                                            List
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="form-group">
-                                    <label>Sắp xếp theo</label>
-                                    @Html.DropDownList("SortProductOptionsSelectListItems")
-                                </div>
-                            </div><!-- display-content bar -->
-                            <div class="top-pagination-content clearfix">
-                                <div class="paging-control-filtercontent pull-right"></div>
-                            </div><!-- pagination-content bar -->
-                        </div><!-- sort bar -->
-                        @Html.Partial("ListProduct", Model.Products)  <!-- list product -->
-                        <div class="content_sortPagiBar">
-                            <div class="bottom-pagination-content clearfix">
-                                <div class="paging-control-filtercontent pull-right"></div>
-                            </div>
-                        </div><!-- sort bar -->
-                    </div><!-- list product panel -->
+<div class="search-form" style="margin-top:20px;">
+    <form action="/Product/SearchProduct" method="get">
+        <input type="text" placeholder="Search..." name="searchString" value="@ViewBag.SearchTitle">
+        <input type="submit" value="">
+    </form>
+</div>
+<!--content-->
+<div class="product">
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12 b-productItems">
+            <div class="spec ">
+                <h3>Search Results</h3>
+                <div class="ser-t">
+                    <b></b>
+                    <span><i></i></span>
+                    <b class="line"></b>
                 </div>
             </div>
+            <div class="products-right-grids">
+                <span class="display hidden-xs pull-right">Có @Model.NumberOfTitlesFound sản phẩm</span>
+                <div class="sorting">
+                    <label>Sắp xếp theo</label>
+                    @Html.DropDownList("SortProductOptionsSelectListItems")
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+            <div class=" con-w3l agileinf list-product-container">
+                @Html.Partial("ListProduct", Model.Products)
+            </div>
+            <div class="clearfix"></div>
+            <div class="content_sortPagiBar">
+                <div class="bottom-pagination-content clearfix">
+                    <div class="paging-control-filtercontent pull-right"></div>
+                </div>
+            </div><!-- sort bar -->
+            <div class="clearfix"> </div>
         </div>
     </div>
 </div>
 
-<script>
-    SearchProductManagement.init(@Model.NumberOfTitlesFound,@Model.CurrentPage,@Model.SearchString);
+<!-- smooth scrolling -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear'
+			};
+		*/
+        $().UItoTop({ easingType: 'easeOutQuart' });
+        SearchProductManagement.init(@Model.NumberOfTitlesFound,@Model.CurrentPage,"@Model.SearchString");
+    });
 </script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!-- //smooth scrolling -->
+<script src="~/Scripts/webjs/jquery.mycart.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var goToCartIcon = function ($addTocartBtn) {
+            var $cartIcon = $(".my-cart-icon");
+            var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });
+            $addTocartBtn.prepend($image);
+            var position = $cartIcon.position();
+            $image.animate({
+                top: position.top,
+                left: position.left
+            }, 500, "linear", function () {
+                $image.remove();
+            });
+        }
+
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function (products) {
+                $.each(products, function () {
+                    console.log(this);
+                });
+            },
+            clickOnAddToCart: function ($addTocart) {
+                goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function (products) {
+                var total = 0;
+                $.each(products, function () {
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
+
+    });
+</script>
+
+<!-- product -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body modal-spa">
+                <div class="col-md-5 span-2">
+                    <div class="item">
+                        <img src="images/of24.png" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <div class="col-md-7 span-1 ">
+                    <h3>Wheat(500 g)</h3>
+                    <p class="in-para"> There are many variations of passages of Lorem Ipsum.</p>
+                    <div class="price_single">
+                        <span class="reducedfrom "><del>$2.00</del>$1.50</span>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <h4 class="quick">Quick Overview:</h4>
+                    <p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
+                    <div class="add-to">
+                        <button class="btn btn-danger my-cart-btn my-cart-btn1 " data-id="24" data-name="Wheat" data-summary="summary 24" data-price="1.50" data-quantity="1" data-image="images/of24.png">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>

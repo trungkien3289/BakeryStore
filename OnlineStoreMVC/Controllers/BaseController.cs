@@ -58,10 +58,9 @@ namespace OnlineStoreMVC.Controllers
         /// </summary>
         protected void PopulateCategoryList()
         {
-            //ViewBag.CategoryList = (new MenuService()).GetMenuByType((int)OnlineStore.Infractructure.Utility.Define.MenuEnum.User);
             ViewBag.CategoryList = service.GetTopCategories();
         }
-
+       
         /// <summary>
         /// Create list category using in top horizontal menu bar
         /// </summary>

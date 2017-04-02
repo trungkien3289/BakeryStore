@@ -48,13 +48,11 @@ var SearchProductManagement = {
             , hwaccel: false // Whether to use hardware acceleration
             , position: 'fixed' // Element positioning
         }).spin();
-
+        debugger
         // Assign model
         this.model = new SearchProductRequest(index, searchString);
         // Init paging control
         this.initPagingControl(numberItems, this.model.NumberOfResultsPerPage);
-        // Update value for search control
-        $("#tmsearch #tm_search_query").val(this.model.SearchString);
         //Init layout
         if (numberItems !=null && numberItems == 0) {
             $("ul.product_list.grid.row").append(SearchProductManagement.getNoResultMessage());
@@ -185,13 +183,13 @@ var SearchProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>
 
-        $("ul.product_list.grid.row").empty();
+        $(".list-product-container").empty();
         if (products && products.length == 0) {
-            $("ul.product_list.grid.row").append(SearchProductManagement.getNoResultMessage());
+            $(".list-product-container").append(SearchProductManagement.getNoResultMessage());
         } else {
             for (var i = 0; i < products.length; i++) {
                 var itemHtml = SearchProductManagement.genarateHtmlProductItem(products[i]);
-                $("ul.product_list.grid.row").append(itemHtml);
+                $(".list-product-container").append(itemHtml);
             }
         }
     },
@@ -203,37 +201,28 @@ var SearchProductManagement = {
         /// <returns>N/A</returns>
 
         var template = "";
-        template += " <li class=\"ajax_block_product col-xs-12 col-sm-6 col-md-4\" style=\"opacity: 1; transform: translate3d(0px, 0px, 0px);\">";
-        template += "            <div class=\"product-container\" itemscope=\"\" itemtype=\"https:\/\/schema.org\/Product\">";
-        template += "                <div class=\"left-block\">";
-        template += "                    <div class='product-image-container image-container-displayproductview'>";
-        template += "                        <a class=\"product_img_link\" itemprop=\"url\" href=\"\/Product\/ProductDetails\/" + product.Id + "\">";
-        template += "                            <img class='replace-2x img-responsive productimage-listproduct-displayproductview' src=" + product.CoverImageUrl + " alt=" + product.Name + " title=" + product.Name + " itemprop=\"image\">";
-        template += "                        <\/a>";
+        template += "<div class=\"col-md-3 pro-1\">";
+        template += "        <div class=\"col-m\">";
+        template += "            <a href=\"/Product/ProductDetails?id=" + product.Id + "\" class=\"offer-img\">";
+        template += "                <img src=\"" + product.CoverImageUrl + "\" class=\"img-responsive\" alt=\"\">";
         if (product.IsNew) {
-            template += "                            <a class=\"new-box\">";
-            template += "                                <span class=\"new-label\">New<\/span>";
-            template += "                            <\/a>";
+            template += "                <div class=\"offer\"><p><span>New<\/span><\/p><\/div>";
         }
-        template += "                    <\/div><!-- cover image -->";
+        template += "            <\/a>";
+        template += "            <div class=\"mid-1\">";
+        template += "                <div class=\"item-name-productItem\">";
+        template += "                    <h6><a title="+product.Name+" href=\"/Product/ProductDetails?id="+product.Id+"\">" + product.Name + "<\/a><\/h6>";
         template += "                <\/div>";
-        template += "                <div class=\"right-block\">";
-        template += "                    <h5 itemprop=\"name\">";
-        template += "                        <a class=\"product-name\" title=" + product.Name + ">";
-        template += "                            <span class=\"list-name\">" + product.Name + "<\/span>";
-        template += "                            <span class=\"grid-name\">" + product.Name + "<\/span>";
-        template += "                        <\/a>";
-        template += "                    <\/h5><!-- product name -->";
-        template += "                    <p class=\"product-desc\" itemprop=\"description\">";
-        template += "                        <span class=\"list-desc\">" + product.ShortDescription + "<\/span>";
-        template += "                        <span class=\"grid-desc\">" + product.ShortDescription + "<\/span>";
-        template += "                    <\/p><!-- product short description -->";
-        template += "                    <div class=\"content_price\" itemprop=\"offers\" itemscope=\"\" itemtype=\"https:\/\/schema.org\/Offer\">";
-        template += "                        <span class=\"price product-price product-price-new\">" + product.Price + "<\/span>";
-        template += "                    <\/div><!-- product price -->";
+        template += "                <div class=\"mid-2\">";
+        template += "<div class=\"item-price-productItem\">" + product.Price + "<\/div>";
+        template += "                    <div class=\"clearfix\"><\/div>";
+        template += "                <\/div>";
+        template += "                <div class=\"add\">";
+        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Add to Cart<\/button>";
         template += "                <\/div>";
         template += "            <\/div>";
-        template += "        <\/li>";
+        template += "        <\/div>";
+        template += "    <\/div>";
 
         return template;
     },
@@ -242,7 +231,7 @@ var SearchProductManagement = {
     },
     updateModelAndLayout: function (model) {
         // update title bar
-        $("#center_column .heading-counter").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
+        $(".b-productItems .products-right-grids .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
         // update paging control
         SearchProductManagement.initPagingControl(model.NumberOfTitlesFound, SearchProductManagement.model.NumberOfResultsPerPage);
     },
@@ -253,7 +242,7 @@ var SearchProductManagement = {
         /// <param>N/A</param>
         /// <returns>N/A</returns>s
 
-        $("ul.product_list").append(SearchProductManagement.controls.spin.spin().el);
+        $(".list-product-container").append(SearchProductManagement.controls.spin.spin().el);
     },
     hideSpin: function () {
         /// <summary>

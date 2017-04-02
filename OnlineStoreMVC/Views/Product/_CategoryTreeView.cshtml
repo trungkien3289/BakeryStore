@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>
+@{
+    int? selectedCategory = (int?)ViewData["SelectedCategory"];
+}
+<ul>
+    @foreach (var item in Model)
+    {
+        if (item.Items.Count() == 0)
+        {
+            if (selectedCategory != null && item.Id == (int)selectedCategory)
+            {
+                <li><a class="category-link active " data-id="@item.Id">@item.Name</a></li>
+            }
+            else
+            {
+                <li><a class="category-link" data-id="@item.Id">@item.Name</a></li>
+            }
+        }
+        else
+        {
+            <li>
+                @if (selectedCategory != null && item.Id == (int)selectedCategory)
+                {
+                <a class="category-link active" data-id="@item.Id">@item.Name</a>
+                }
+                else
+                {
+                    <a class="category-link" data-id="@item.Id">@item.Name</a>
+                }
+                <ul class="sub-category-list">
+                    @foreach (var child in item.Items)
+                    {
+                        if (selectedCategory != null && child.Id == (int)selectedCategory)
+                        {
+                            <li><a class="category-link sub-category-link active" data-id="@child.Id">@child.Name</a></li>
+                        }
+                        else
+                        {
+                            <li><a class="category-link sub-category-link" data-id="@child.Id">@child.Name</a></li>
+                        }
+                    }
+                </ul>
+                </li>
+        }
+    }
+</ul>

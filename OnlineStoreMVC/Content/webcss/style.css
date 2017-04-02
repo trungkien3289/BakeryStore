@@ -640,6 +640,13 @@ ul.nav.tabs {
 .mid-1 h6 a {
     color: #000000;
     text-decoration:none;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align:center;
 }
 .mid-1 h6 a:hover {
     color: #FAB005;
@@ -659,9 +666,10 @@ ul.nav.tabs {
 }
 .mid-2 {
     padding: 1em 0;
+    text-align:center;
 }
 .mid-1 {
-    padding: 3em 0 0;
+    padding: 1em 0 0;
 }
 .block {
     float: right;
@@ -706,6 +714,17 @@ ul.nav.tabs {
     display: inline-block;
     font-weight: bold;
 }
+
+/* start product items */
+
+.item-name-productItem{
+    /*height:40px;*/
+}
+.item-price-productItem{
+    color:#FAB005;
+}
+
+/* end product item */
 
 .modal-body {
     padding: 1em 1em 0em;
