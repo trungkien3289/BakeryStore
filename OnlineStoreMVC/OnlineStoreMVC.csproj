@@ -173,6 +173,7 @@
     <Compile Include="Areas\Admin\Controllers\CMSCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CMSNewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductGroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
@@ -508,6 +509,8 @@
     <Content Include="Content\css\site.css" />
     <Content Include="Content\css\site1.css" />
     <Content Include="Content\css\site2.css" />
+    <Content Include="Content\display-product\checkout-successful-page.css" />
+    <Content Include="Content\display-product\checkout.css" />
     <Content Include="Content\display-product\display-product-view.css" />
     <Content Include="Content\display-product\horizontal-list-product-bar.css" />
     <Content Include="Content\display-product\product.css" />
@@ -577,8 +580,10 @@
     <Content Include="Content\font-awesome\4.3.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\html5shiv\3.7.2\html5shiv.min.js" />
+    <Content Include="Content\Images\Banners\bakery-cake.png" />
     <Content Include="Content\Images\Banners\Banner.jpg" />
     <Content Include="Content\Images\Banners\faviorIcon.jpg" />
+    <Content Include="Content\Images\Banners\kitchen-tools.png" />
     <Content Include="Content\Images\bx_loader.gif" />
     <Content Include="Content\Images\CMSNewsImages\item_0_21-3.jpg" />
     <Content Include="Content\Images\CMSNewsImages\item_0_3-home-default.jpg" />
@@ -809,6 +814,9 @@
     <Content Include="Content\Images\TestImages\wi2.png" />
     <Content Include="Content\ionicons\2.0.1\css\ionicons.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\plugins\angular\angular-resource.js" />
+    <Content Include="Content\plugins\angular\angular-route.js" />
+    <Content Include="Content\plugins\angular\angular.js" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.js" />
@@ -1637,6 +1645,7 @@
     <Content Include="kitchen.html" />
     <Content Include="Scripts\Admin\brand-management.js" />
     <Content Include="Scripts\Admin\category-management.js" />
+    <Content Include="Scripts\Admin\order-management.js" />
     <Content Include="Scripts\Admin\product-group-management.js" />
     <Content Include="Scripts\Admin\product-management.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1835,6 +1844,10 @@
     <Content Include="Areas\Admin\Views\ProductGroup\Index.cshtml" />
     <Content Include="Scripts\DisplayProduct\CheckOut.js" />
     <Content Include="wishlist.html" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Properties\PublishProfiles\xaviadecor.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisplayProduct\DetailProduct.js" />
@@ -1874,7 +1887,6 @@
     <Content Include="Content\css\blockviewed.css" />
     <Content Include="Content\css\blockwishlist.css" />
     <Content Include="Content\css\category.css" />
-    <Content Include="Content\css\cbb092d6554938a9549cb716ffcb1f94.css" />
     <Content Include="Content\css\cms.css" />
     <Content Include="Content\css\contact-form.css" />
     <Content Include="Content\css\css%281%29.css" />
@@ -2035,6 +2047,7 @@
     <Content Include="Views\Shared\_ListSubCategory.cshtml" />
     <Content Include="Views\Product\_CategoryTreeView.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
+    <Content Include="Views\Order\OrderSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

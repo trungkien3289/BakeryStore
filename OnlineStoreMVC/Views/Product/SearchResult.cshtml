@@ -1,7 +1,7 @@
 ﻿@model OnlineStore.Service.Messaging.SearchProductResponse
 
 @{
-    ViewBag.Title = "kết quả tìm kiếm";
+    ViewBag.Title = "Searching Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Content/plugins/pagingcontrol/jquery.simplePagination.js"></script>
@@ -30,9 +30,9 @@
                 </div>
             </div>
             <div class="products-right-grids">
-                <span class="display hidden-xs pull-right">Có @Model.NumberOfTitlesFound sản phẩm</span>
+                <span class="display hidden-xs pull-right">Have @Model.NumberOfTitlesFound items</span>
                 <div class="sorting">
-                    <label>Sắp xếp theo</label>
+                    <label>Order By</label>
                     @Html.DropDownList("SortProductOptionsSelectListItems")
                 </div>
             </div>
@@ -51,21 +51,6 @@
     </div>
 </div>
 
-<!-- smooth scrolling -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        /*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear'
-			};
-		*/
-        $().UItoTop({ easingType: 'easeOutQuart' });
-        SearchProductManagement.init(@Model.NumberOfTitlesFound,@Model.CurrentPage,"@Model.SearchString");
-    });
-</script>
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 <script src="~/Scripts/webjs/jquery.mycart.js"></script>

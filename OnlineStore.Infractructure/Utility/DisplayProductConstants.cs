@@ -18,13 +18,13 @@ namespace OnlineStore.Infractructure.Utility
 
     public enum ProductsSortBy
     {
-        [Description("Giá: từ cao xuống thấp")]
+        [Description("Price: from high to low")]
         PriceHighToLow = 1,
-        [Description("Giá: từ thấp lên cao")]
+        [Description("Price: from low to high")]
         PriceLowToHigh = 2,
-        [Description("Tên: từ A đến Z")]
+        [Description("Name: from A to Z")]
         ProductNameAToZ = 3,
-        [Description("Tên: từ Z đến A")]
+        [Description("Name: from Z to A")]
         ProductNameZToA = 4
     }
 
@@ -46,5 +46,17 @@ namespace OnlineStore.Infractructure.Utility
         BakeryProducts = 8,
         [Description("Vật Dụng Nhà Bếp")]
         KitchenTools = 9
+    }
+
+    public enum OrderStatus
+    {
+        [Description("Chưa giao")]
+        NotDeliver = 1,
+
+        [Description("Đã giao")]
+        Delivered = 2,
+
+        [Description("Hủy")]
+        Cancel = 3
     }
 }

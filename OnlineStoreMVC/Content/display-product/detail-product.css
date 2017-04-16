@@ -4,3 +4,16 @@
     margin-top:5px;
     overflow:auto;
 }
+
+#thumbs_list_frame li{
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    cursor:pointer;
+}
+
+#thumbs_list_frame li:hover{
+    border:1px solid #039445;
+    cursor:pointer;
+    box-sizing:border-box;
+}

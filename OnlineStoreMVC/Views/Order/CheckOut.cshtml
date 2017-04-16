@@ -2,20 +2,76 @@
     ViewBag.Title = "CheckOut Cart";
 }
 
+<link href="~/Content/display-product/checkout.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/argularjs")
+<script src="~/Scripts/webjs/jquery.mycart.js"></script>
 <script src="~/Scripts/DisplayProduct/CheckOut.js"></script>
 
 <!--banner-->
 <div class="banner-top">
     <div class="container">
-        <h3>CheckOut Cart</h3>
+        <h3>Checkout Cart</h3>
         <h4><a href="index.html">Home</a><label>/</label>CheckOut</h4>
         <div class="clearfix"> </div>
     </div>
 </div>
 
 <!-- contact -->
-<div class="check-out">
-    <div class="container">
+<div class="check-out" ng-app="ecom_Checkout">
+    <div class="container" ng-controller="ecom_CheckOut_Controller as ctrl">
+        <!-- Products list -->
+        <div class="spec ">
+            <h3>Products List</h3>
+            <div class="ser-t">
+                <b></b>
+                <span><i></i></span>
+                <b class="line"></b>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function (c) {
+                $('.close1').on('click', function (c) {
+                    $('.cross').fadeOut('slow', function (c) {
+                        $('.cross').remove();
+                    });
+                });
+            });
+        </script>
+
+        <div id="List_ProductsOfCart">
+            <table class="table ">
+                <tr>
+                    <th class="t-head head-it ">Products</th>
+                    <th class="t-head">Price</th>
+                    <th class="t-head">Quantity</th>
+                    <th class="t-head"></th>
+                </tr>
+                <tbody class="cross" ng-repeat="product in ctrl.products">
+                    <tr class="cross">
+                        <td class="ring-in t-data">
+                            <a href="single.html" class="at-in">
+                                <img src="{{product.image}}" class="img-responsive" alt="{{product.name}}">
+                            </a>
+                            <div class="sed">
+                                <h5>{{product.name}}</h5>
+                            </div>
+                        </td>
+                        <td class="t-data">{{product.price}} VND</td>
+                        <td class="t-data">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus" ng-click="ctrl.minusQuantityProduct(product.id)">&nbsp;</div>
+                                    <div class="entry value"><span class="span-1">{{product.quantity}}</span></div>
+                                    <div class="entry value-plus active" ng-click="ctrl.plusQuantityProduct(product.id)">&nbsp;</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="t-data t-w3l"><a class="btn-removeproduct-checkout" ng-click="ctrl.removeProductFromCart($event.currentTarget, product.id, product.quantity)">Remove</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="spec ">
             <h3>Information</h3>
             <div class="ser-t">
@@ -26,52 +82,33 @@
         </div>
 
         <div class="row">
-            <div class="form-group">
-                <label for="email">Full Name:</label>
-                <input type="text" class="form-control" id="Txt_FullName">
-            </div>
-            <div class="form-group">
-                <label for="email">Address:</label>
-                <input type="text" class="form-control" id="Txt_Address">
-            </div>
-            <div class="form-group">
-                <label for="email">Phone Number:</label>
-                <input type="text" class="form-control" id="Txt_PhoneNumber">
-            </div>
-            <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="Txt_EmailAddress">
-            </div>
-            <div class="form-group">
-                <label for="email">Note:</label>
-                <textarea rows="5" class="form-control" id="Txa_Note"></textarea>
-            </div>
-            <button id="Btn_CheckOut" type="button" class="btn btn-default">CheckOut</button>
+            <form name="formCheckOut" ng-submit="ctrl.checkOut()">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
+                    <label for="email">Full Name:</label>
+                    <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.FullName">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
+                    <label for="email">Address:</label>
+                    <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.Address">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
+                    <label for="email">Phone Number:</label>
+                    <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.PhoneNumber">
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
+                    <label for="email">Email address:</label>
+                    <input type="email" required class="form-control" ng-model="ctrl.checkOutModel.EmailAddress">
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-left">
+                    <label for="email">Note:</label>
+                    <textarea rows="5" class="form-control" ng-model="ctrl.checkOutModel.Note"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" ng-disabled="formCheckOut.$invalid" class="btn btn-danger btn-checkout" value="CheckOut" />
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-
-
-<!-- smooth scrolling -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        /*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear'
-			};
-		*/
-        $().UItoTop({ easingType: 'easeOutQuart' });
-    });
-</script>
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
-<script src="~/Scripts/webjs/jquery.mycart.js"></script>
-<script>
-    $(document).ready(function () {
-        CheckOutManagement.init();
-    });
-</script>

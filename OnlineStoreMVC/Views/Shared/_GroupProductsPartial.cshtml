@@ -15,7 +15,7 @@
     <div class=" con-w3l">
         @foreach (var item in @Model)
         {
-            <div class="col-md-3 pro-1">
+            <div class="col-md-3 pro-1" data-toggle="popover" title="@item.Name" data-content="@item.ShortDescription">
                 <div class="col-m">
                     <a href="/Product/ProductDetails/@item.Id" class="offer-img">
                         <img src="@item.CoverImageUrl" class="img-responsive" alt="">
@@ -26,12 +26,12 @@
                     </a>
                     <div class="mid-1">
                         <div class="women">
-                            <h6><a href="single.html">@item.Name</a></h6>
+                            <h6><a href="/Product/ProductDetails/@item.Id">@item.Name</a></h6>
                         </div>
                         <div class="mid-2">
                             <div class="item-price-productItem">
                                 @item.PriceFormatCurrency
-                                </div>
+                            </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="add add-2">

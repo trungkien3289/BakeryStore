@@ -2,12 +2,19 @@
     init: function () {
         this.bindEvents();
         this.initZoomImageControl();
+        // Init popover
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover",
+            container: "body",
+            placement: "auto right",
+            template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+        });
     },
     bindEvents: function () {
         $("#thumbs_list_frame li").unbind("click").bind("click", function () {
             var imagePath = $(this).data("imagepath") || "/Content/Images/no-image.png";
-            $("#picture-frame").attr("src", imagePath);
-            $("#picture-frame").data("zoom-image", imagePath);
+            $("#picture-frame>img").attr("src", imagePath);
+            $("#picture-frame>img").data("zoom-image", imagePath);
             DetailProductManagement.initZoomImageControl();
         });
 

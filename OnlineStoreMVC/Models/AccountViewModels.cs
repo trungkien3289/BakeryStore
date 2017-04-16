@@ -49,13 +49,13 @@ namespace OnlineStoreMVC.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Địa chỉ email")]
+        [Display(Name = "Email Address")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -66,24 +66,24 @@ namespace OnlineStoreMVC.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Địa chỉ email")]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Nhập lại mật khẩu")]
+        [Display(Name = "Repassword")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Số điện thoại")]
+        [Display(Name = "Phone Number")]
         public string Phone { get; set; }
         
-        [Display(Name = "Địa chỉ")]
+        [Display(Name = "Address")]
         public string Address { get; set; }
     }
 

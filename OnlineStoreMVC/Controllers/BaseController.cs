@@ -13,7 +13,7 @@ namespace OnlineStoreMVC.Controllers
     {
         #region Properties
 
-        public IDisplayProductService service = new DisplayProductService();
+        public IDisplayProductService service;
 
         #endregion
         
@@ -22,7 +22,6 @@ namespace OnlineStoreMVC.Controllers
         public BaseController()
         {
             service = new DisplayProductService();
-            //service.RefreshAll();
         }
 
         #endregion

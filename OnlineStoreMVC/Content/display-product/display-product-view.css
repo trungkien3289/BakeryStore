@@ -8,7 +8,7 @@
 .price-range-input-panel{
     display:inline-block;
     float:left;
-    /*width:196px*/
+    width:196px
 }
 .btn-filter-after-price-wrapper{
     display:inline-block;

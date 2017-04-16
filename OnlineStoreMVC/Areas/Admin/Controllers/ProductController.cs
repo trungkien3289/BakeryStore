@@ -172,32 +172,22 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var file = Request.Files["coverImage"];
-                //HttpPostedFileBase file = coverImage;
                 if (file != null && file.ContentLength > 0)
                 {
                     if (file.ContentLength > 0)
                     {
-                        // width + height will force size, care for distortion
-                        //Exmaple: ImageUpload imageUpload = new ImageUpload { Width = 800, Height = 700 };
+                        string largeFileName = null;
+                        bool isSuccess = UploadProductImages(file, out largeFileName);
 
-                        // height will increase the width proportionally
-                        //Example: ImageUpload imageUpload = new ImageUpload { Height= 600 };
-
-                        // width will increase the height proportionally
-                        ImageUpload imageUpload = new ImageUpload { Width = 600 };
-
-                        // rename, resize, and upload
-                        //return object that contains {bool Success,string ErrorMessage,string ImageName}
-                        ImageResult imageResult = imageUpload.RenameUploadFile(file);
-                        if (imageResult.Success)
+                        if (isSuccess)
                         {
-                            // Add new image to database
-                            var photo = new share_Images
+                            share_Images largeImage = new share_Images
                             {
-                                ImageName = imageResult.ImageName,
-                                ImagePath = Path.Combine(ImageUpload.LoadPath, imageResult.ImageName)
+                                ImageName = largeFileName,
+                                ImagePath = Path.Combine(ImageUpload.LargeImagePath, largeFileName)
                             };
-                            var imageId = service.AddImage(photo);
+
+                            var imageId = service.AddImage(largeImage);
                             // Add product
                             productRequest.CoverImageId = imageId;
                             service.AddProduct(productRequest);
@@ -206,7 +196,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                         else
                         {
                             // use imageResult.ErrorMessage to show the error
-                            ViewBag.Error = imageResult.ErrorMessage;
+                            ViewBag.Error = "Upload product image fail";
                         }
                     }
                 }

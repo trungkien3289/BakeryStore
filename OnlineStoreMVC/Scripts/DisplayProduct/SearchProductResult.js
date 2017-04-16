@@ -48,7 +48,6 @@ var SearchProductManagement = {
             , hwaccel: false // Whether to use hardware acceleration
             , position: 'fixed' // Element positioning
         }).spin();
-        debugger
         // Assign model
         this.model = new SearchProductRequest(index, searchString);
         // Init paging control
@@ -57,7 +56,13 @@ var SearchProductManagement = {
         if (numberItems !=null && numberItems == 0) {
             $("ul.product_list.grid.row").append(SearchProductManagement.getNoResultMessage());
         }
-
+        // Init popover
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover",
+            container: "body",
+            placement: "auto right",
+            template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+        });
         // Add events
         this.bindEvents();
     },
@@ -227,11 +232,11 @@ var SearchProductManagement = {
         return template;
     },
     getNoResultMessage: function () {
-        return "<li class='noresult-panel'>Không có sản phẩm nào được tìm thấy</li>";
+        return "<li class='noresult-panel'>no results</li>";
     },
     updateModelAndLayout: function (model) {
         // update title bar
-        $(".b-productItems .products-right-grids .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
+        $(".b-productItems .products-right-grids .display").text("Have " + model.NumberOfTitlesFound + " items");
         // update paging control
         SearchProductManagement.initPagingControl(model.NumberOfTitlesFound, SearchProductManagement.model.NumberOfResultsPerPage);
     },

@@ -18,13 +18,13 @@ namespace OnlineStore.Infractructure.Utility
 
         public enum Status
         {
-            [Description("Ngưng hoạt động")]
+            [Description("Deactive")]
             Deactive = 0,
 
-            [Description("Đang hoạt động")]
+            [Description("Active")]
             Active = 1,
 
-            [Description("Xóa")]
+            [Description("Deleted")]
             Delete = 2
         }
 

@@ -1,0 +1,92 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+@model IPagedList<OnlineStore.Model.ViewModel.ShortSummaryOrderModel>
+
+@{
+    ViewBag.Title = "Quản lý danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Admin/order-management.js"></script>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        ĐƠN HÀNG
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="box-tools pull-right" style="padding-right: 15px; padding-bottom: 10px;">
+            @Html.ActionLink("THÊM", "Create", null, new { @class = "btn btn-primary btn-sm" })
+        </div>
+    </div><!--Function group buttons panel-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Danh sách đơn hàng</h3>
+                </div><!--Header-->
+                <div class="box-body">
+                    <table class="table table-hover table-condensed table-responsive table-bordered">
+                        <tr>
+                            <th>
+                                ORDER ID
+                            </th>
+                            <th>
+                                TÊN NGƯỜI NHẬN
+                            </th>
+                            <th>
+                                SỐ ĐIỆN THOẠI
+                            </th>
+                            <th>
+                                NGÀY TẠO
+                            </th>
+                            <th>
+                                TRẠNG THÁI ĐƠN HÀNG
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NameOfRecipient)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneOfRecipient)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                                </td>
+                                <td class="center-text">
+                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "btn btn-info glyphicon glyphicon-info-sign" })
+                                    <a class="btn btn-danger glyphicon glyphicon-trash" onclick="OrderManagement.deleteItem(@item.Id)"></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div><!--Body-->
+                <div class="box-footer clearfix">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, keyword = Request.QueryString["keyword"] }))
+                </div><!--Footer-->
+            </div>
+        </div>
+    </div><!--Content panel-->
+</section>

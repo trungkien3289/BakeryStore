@@ -1,0 +1,97 @@
+﻿@model OnlineStore.Model.ViewModel.OrderSumaryModel
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Chi tiết đơn hàng
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Thông tin đơn hàng</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">TÊN KHÁCH HÀNG</label>
+                            @Html.Label(Model.NameOfRecipient, new { @class = "span-value-control col-md-9" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">SỐ ĐIỆN THOẠI</label>
+                            @Html.Label(Model.PhoneOfRecipient, new { @class = "span-value-control col-md-9" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">ĐỊA CHỈ</label>
+                            @Html.Label(Model.AddressOfRecipient, new { @class = "span-value-control col-md-9" })
+                        </div>
+
+                        <div class="form-group no-margin">
+                            <label class="control-label col-md-3">GHI CHÚ</label>
+                            @Html.TextAreaFor(m => m.OrderNote,10,20, new { @class = "col-md-9" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">TRẠNG THÁI ĐƠN HÀNG</label>
+                            @Html.Label(Model.OrderStatus, new { @class = "span-value-control col-md-9" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">NGÀY TẠO</label>
+                            @Html.Label(Model.CreatedDate, new { @class = "span-value-control col-md-9" })
+                        </div>
+                    </div>
+                    <div class="box-header">
+                        <h3 class="box-title">Danh sách sản phẩm trong đơn hàng</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Giá mỗi đơn vị</th>
+                                    <th>Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (OnlineStore.Model.ViewModel.OrderDetailsSumaryModel orderDetails in Model.OrderDetailsList)
+                                {
+                                    <tr>
+                                        <td>@orderDetails.ProductName</td>
+                                        <td><img src="@orderDetails.CoverImagePath" style="width:20px;height:20px;" title="@orderDetails.ProductName" /></td>
+                                        <td>@orderDetails.PriceOfUnit</td>
+                                        <td>@orderDetails.Quantity</td>
+                                    </tr>
+                                }
+                            </tbody>
+                           
+
+                        </table>
+                    </div>
+                    <p>
+                        @Html.ActionLink("CẬP NHẬT", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("TRỞ VỀ DANH SÁCH", "Index", null, new { @class = "btn btn-default" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

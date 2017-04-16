@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "OrderSuccessful";
+}
+<link href="~/Content/display-product/checkout-successful-page.css" rel="stylesheet" />
+<script src="~/Scripts/webjs/jquery.mycart.js"></script>
+
+<!--banner-->
+<div class="banner-top">
+    <div class="container">
+        <h3>Order Successful</h3>
+        <h4><a href="index.html">Home</a><label>/</label>CheckOut</h4>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+<div class="container checkout-successful-panel">
+    <h2 class="title-checkout-successful">Order Successful</h2>
+    </br>
+    <div class="ser-t">
+        <b></b>
+        <span><i></i></span>
+        <b class="line"></b>
+    </div>
+    </br>
+    </br>
+    <h4 class="content-checkout-successful">
+        You have successfully order products, we will contact you soon</h4>
+    <h4 class="content-checkout-successful">Thank you.</h4>
+</div>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+<script type="text/javascript">
+    $(function () {
+        var goToCartIcon = function ($addTocartBtn) {
+            var $cartIcon = $(".my-cart-icon");
+            var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });
+            $addTocartBtn.prepend($image);
+            var position = $cartIcon.position();
+            $image.animate({
+                top: position.top,
+                left: position.left
+            }, 500, "linear", function () {
+                $image.remove();
+            });
+        }
+
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function (products) {
+                console.log(products);
+                window.location.replace("/Order/CheckOut");
+            },
+            clickOnAddToCart: function ($addTocart) {
+                goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function (products) {
+                var total = 0;
+                $.each(products, function () {
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
+
+    });
+</script>

@@ -63,6 +63,11 @@ namespace OnlineStoreMVC
                      "~/Content/webcss/font-awesome.min.css",
                      "~/Content/webcss/responsive.css"
                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/argularjs").Include(
+                  "~/Content/plugins/angular/angular.js",
+                  "~/Content/plugins/angular/angular-route.js",
+                  "~/Content/plugins/angular/angular-resource.js"));
         }
     }
 }

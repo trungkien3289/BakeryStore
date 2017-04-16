@@ -512,12 +512,12 @@ span.fa.fa-shopping-cart.my-cart-icon {
     padding: 10px;
     outline: none;
     font-size: 1em;
-    color: #fff;
+    color: #000;
     border: 1px solid #FFF;
     background: rgba(255, 255, 255, 0.45);
 }
 .search-form input[type='submit']{
-	    width: 40px;
+	width: 40px;
     height: 41px;
     outline: none;
     border: 1px solid #fff;
@@ -1893,6 +1893,11 @@ table.table {
     width: 100%;
     border: 1px solid #D0D0D0;
 }
+
+.modal-content{
+    border: none;
+}
+
 td.t-data {
     border: 1px solid #D2D2D2;
     padding: 10px !important;
@@ -1913,7 +1918,8 @@ a.at-in {
 a.at-in{
 	border:1px solid #DADADA;
 	padding:1em 0;
-	margin-left: 11%;
+	/*margin-left: 11%;*/
+    width:30%;
 }
 .sed {
     float: right;
@@ -3205,4 +3211,40 @@ h1.t-button {
 .grid_3 p, .page-header p {
     font-size: 13px;
 }
+}
+
+/* Start cart window */
+
+#cartWindow .modal-body{
+    overflow:auto;
+}
+
+/* End cart window */
+
+.popover {
+    opacity:0.9!important;
+    border-color: rgb(0, 153, 0);
+    border-radius:0;
+}
+    .popover.right {
+        margin-left:-10px!important;
+    }
+    .popover.left {
+        margin-left: 10px!important;
+    }
+.popover .popover-content{
+    min-height:240px;
+    width:250px;
+    border-radius:0;
+}
+
+.popover .popover-title{
+    background-color: rgb(0, 153, 0);
+    color: rgb(255, 255, 255);
+    border-bottom-color: rgb(0, 153, 0);
+    border-radius:0;
+}
+
+#my-cart-modal .modal-body{
+    overflow:auto;
 }

@@ -141,10 +141,12 @@
     <Compile Include="Repository\BrandRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductGroupRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="ViewModel\BannerViewModel.cs" />
+    <Compile Include="ViewModel\OrderManagementViewModel.cs" />
     <Compile Include="ViewModel\ProductGroupViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
     <Compile Include="ViewModel\CMSNewsView.cs" />

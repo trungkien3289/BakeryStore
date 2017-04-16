@@ -3,7 +3,7 @@
 
 @foreach (var product in @Model)
 {
-    <div class="col-md-3 pro-1 b-productItem">
+    <div class="col-md-3 pro-1 b-productItem" data-toggle="popover" title="@product.Name" data-content="@product.ShortDescription">
         <div class="col-m">
             <a href="/Product/ProductDetails?id=@product.Id" class="offer-img">
                 <img src="@product.CoverImageUrl" class="img-responsive" alt="">

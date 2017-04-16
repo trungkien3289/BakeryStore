@@ -14,6 +14,7 @@ namespace OnlineStoreMVC.Models.ImageModels
     public class ImageUpload
     {
         public static readonly string LoadPath = "/Content/Images/ProductImages/SmallImages/";
+        public static readonly string LargeImagePath = "/Content/Images/ProductImages/LargeImages/";
         public static readonly string LoadPathCMSNews = "/Content/Images/CMSNewsImages/";
         public static readonly string LoadPathBanners = "/Content/Images/Banners/";
 

@@ -15,7 +15,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         #region Properties
 
-        protected IProductService service = new ProductService();
+        protected IProductService service;
 
         #endregion
 
@@ -24,7 +24,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         public BaseManagementController()
         {
             service = new ProductService();
-            //service.RefreshAll();
         }
 
         #endregion
