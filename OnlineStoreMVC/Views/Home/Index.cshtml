@@ -6,6 +6,15 @@
 }
 
 @section css{
+    <style>
+        a.link-more-items{
+        color:#039445
+        }
+
+        a.link-more-items:hover{
+        color:#fbc25b
+        }
+    </style>
 }
 
 @section scripts{
@@ -13,22 +22,58 @@
 }
 
 <div class="banner-wrapper">
-    <div class="banner-images"></div>
-    <div class="container">
-        <div class="banner-info">
-            <h3>
-                BAKERY SHOP
-            </h3>
-            <h3> A tatse of the good life </h3>
-            <div class="search-form">
-                <form action="/Product/SearchProduct" method="get">
-                    <input type="text" placeholder="Search..." name="searchString">
-                    <input type="submit" value=" ">
-                </form>
+    @*<div class="banner-images"></div>*@
+  
+        <div id="mainBanner" class="carousel slide" data-ride="carousel">
+            
+            <!-- Indicators -->
+           
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < ViewBag.Banner.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <li data-target="#mainBanner" data-slide-to="@i" class="active"></li>
+                    }
+                    else
+                    {
+                        <li data-target="#mainBanner" data-slide-to="@i"></li>
+                    }
+                }
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                @for (int i = 0; i < ViewBag.Banner.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <div class="item active">
+                            <a> <img src="@ViewBag.Banner[i].ImagePath" alt="@ViewBag.Banner[i].Name"></a>
+                            <div class="carousel-caption">
+                                <h1>The Bakery Store</h1>
+                                <h3>The Best Choice For You</h3>
+                            </div>
+                        </div>
+                    
+                    }
+                    else
+                    {
+                        <div class="item">
+                            <a> <img src="@ViewBag.Banner[i].ImagePath" alt="@ViewBag.Banner[i].Name"></a>
+                            <div class="carousel-caption">
+                                <h1>The Bakery Store</h1>
+                                <h3>The Best Choice For You</h3>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
-        </div>
+
+        </div><!-- /.carousel -->
     </div>
-</div>
+
+<!-- Carousel
+  ================================================== -->
+
 
 
 <!-- special offer -->
@@ -55,7 +100,7 @@
                         @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListBakeryProducts)
                         <div class="clearfix"></div>
                         <div class="row">
-                            @Html.ActionLink("more items", "GetProductByCategory", "Product", new { id = 8 }, new { @class = "pull-right" })
+                            @Html.ActionLink("more...", "GetProductByCategory", "Product", new { id = 8 }, new { @class = "pull-right link-more-items" })
                         </div>
                     </div>
                 </div>
@@ -64,7 +109,7 @@
                         @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListKitChenTools)
                         <div class="clearfix"></div>
                         <div class="row">
-                            @Html.ActionLink("more items", "GetProductByCategory", "Product", new { id = 9 }, new { @class = "pull-right" })
+                            @Html.ActionLink("more...", "GetProductByCategory", "Product", new { id = 9 }, new { @class = "pull-right link-more-items" })
                         </div>
                     </div>
                 </div>
@@ -80,24 +125,24 @@
 
         <div class="col-md-4 m-w3ls">
             <div class="col-md1 ">
-                <a href="kitchen.html">
-                    <img src="~/Content/Images/TestImages/co1.jpg" class="img-responsive img" alt="">
+                <a>
+                    <img src="~/Content/Images/Banners/cakes-collection.png" class="img-responsive img" alt="">
                     <div class="big-sa">
                         <h6>New Collections</h6>
                         <h3>Season<span>ing </span></h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority </p>
+                        <p>There are many variations of cakes for this season </p>
                     </div>
                 </a>
             </div>
         </div>
         <div class="col-md-4 m-w3ls1">
             <div class="col-md ">
-                <a href="hold.html">
-                    <img src="~/Content/Images/TestImages/co.jpg" class="img-responsive img" alt="">
+                <a>
+                    <img src="~/Content/Images/Banners/big-sale.png" class="img-responsive img" alt="">
                     <div class="big-sale">
                         <div class="big-sale1">
                             <h3>Big <span>Sale</span></h3>
-                            <p>It is a long established fact that a reader </p>
+                            <p>Big sale for this week</p>
                         </div>
                     </div>
                 </a>
@@ -105,20 +150,20 @@
         </div>
         <div class="col-md-4 m-w3ls">
             <div class="col-md2 ">
-                <a href="kitchen.html">
-                    <img src="~/Content/Images/TestImages/co2.jpg" class="img-responsive img1" alt="">
+                <a>
+                    <img src="~/Content/Images/Banners/gift-banner.png" class="img-responsive img1" alt="">
                     <div class="big-sale2">
-                        <h3>Cooking <span>Oil</span></h3>
-                        <p>It is a long established fact that a reader </p>
+                        <h3>Special <span>Gilf</span></h3>
+                        <p>We have specials gilfs for customers </p>
                     </div>
                 </a>
             </div>
             <div class="col-md3 ">
-                <a href="hold.html">
-                    <img src="~/Content/Images/TestImages/co3.jpg" class="img-responsive img1" alt="">
+                <a>
+                    <img src="~/Content/Images/Banners/shipping-banner.png" class="img-responsive img1" alt="">
                     <div class="big-sale3">
-                        <h3>Vegeta<span>bles</span></h3>
-                        <p>It is a long established fact that a reader </p>
+                        <h3>Free <span>Shipping</span></h3>
+                        <p>Free shipping in city</p>
                     </div>
                 </a>
             </div>
@@ -138,16 +183,25 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <a href="kitchen.html"> <img class="first-slide" src="~/Content/Images/TestImages/ba.jpg" alt="First slide"></a>
-
+            <a> <img  style="height:300px;width:100%;" class="first-slide" src="~/Content/Images/Banners/sub-banner1.png" alt="sweet cake"></a>
+            <div class="carousel-caption">
+                <h1>The Bakery Store</h1>
+                <h3>The taste of life</h3>
+            </div>
         </div>
         <div class="item">
-            <a href="care.html"> <img class="second-slide " src="~/Content/Images/TestImages/ba1.jpg" alt="Second slide"></a>
-
+            <a> <img style="height:300px;width:100%;" class="second-slide " src="~/Content/Images/Banners/sub-banner2.png" alt="sweet cake"></a>
+            <div class="carousel-caption">
+                <h1>The Bakery Store</h1>
+                <h3>Bring the happiness to your life</h3>
+            </div>
         </div>
         <div class="item">
-            <a href="hold.html"><img class="third-slide " src="~/Content/Images/TestImages/ba2.jpg" alt="Third slide"></a>
-
+            <a><img style="height:300px;width:100%;" class="third-slide " src="~/Content/Images/Banners/sub-banner3.png" alt="sweet cake"></a>
+            <div class="carousel-caption">
+                <h1>The Bakery Store</h1>
+                <h3>Pleased to be your friend</h3>
+            </div>
         </div>
     </div>
 

@@ -97,19 +97,25 @@
             });
         }
         self.removeProductFromCart = function (element, id) {
-            //$(element).closest('.cross').fadeOut('slow', function (c) {
-            var deletedItemIndex = 0;
+        debugger
+            var deletedItemIndex = -1;
                 for (var i = 0; i < self.products.length; i++) {
                     if (self.products[i].id == id) {
                         deletedItemIndex = i;
                         break;
                     }
                 }
+                if (deletedItemIndex >= 0) {
+                    self.products.splice(deletedItemIndex, 1);
+                    // Update list selected product table
+                    $(element).closest('.cross').fadeOut('slow', function (c) {
+                    $(element).closest('.cross').remove();
+                    });
+                }
 
-                self.products = self.products.splice(deletedItemIndex, 1);
+          
 
                 updateCart();
-            //});
         }
         self.plusQuantityProduct = function (id) {
             $.each(self.products, function (i, product) {

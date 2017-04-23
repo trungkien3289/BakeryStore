@@ -134,6 +134,7 @@
     <Compile Include="Mapper\ProductMapper.cs" />
     <Compile Include="MessageModel\BrandManagement.cs" />
     <Compile Include="MessageModel\CategoryManagement.cs" />
+    <Compile Include="MessageModel\EmailModel.cs" />
     <Compile Include="MessageModel\Order.cs" />
     <Compile Include="MessageModel\ProductGroupManagement.cs" />
     <Compile Include="MessageModel\ProductManagement.cs" />

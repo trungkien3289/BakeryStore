@@ -11,7 +11,7 @@
 <div class="banner-top">
     <div class="container">
         <h3>Checkout Cart</h3>
-        <h4><a href="index.html">Home</a><label>/</label>CheckOut</h4>
+        <h4><a href="/Home/Index">Home</a><label>/</label>CheckOut</h4>
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -46,10 +46,10 @@
                     <th class="t-head">Quantity</th>
                     <th class="t-head"></th>
                 </tr>
-                <tbody class="cross" ng-repeat="product in ctrl.products">
+                <tbody class="cross" ng-repeat="product in ctrl.products track by product.id">
                     <tr class="cross">
                         <td class="ring-in t-data">
-                            <a href="single.html" class="at-in">
+                            <a href="/Product/ProductDetails?id={{product.id}}" class="at-in">
                                 <img src="{{product.image}}" class="img-responsive" alt="{{product.name}}">
                             </a>
                             <div class="sed">
@@ -84,20 +84,20 @@
         <div class="row">
             <form name="formCheckOut" ng-submit="ctrl.checkOut()">
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Full Name:</label>
+                    <label for="email">Full Name:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.FullName">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Address:</label>
+                    <label for="email">Address:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.Address">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Phone Number:</label>
+                    <label for="email">Phone Number:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.PhoneNumber">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
                     <label for="email">Email address:</label>
-                    <input type="email" required class="form-control" ng-model="ctrl.checkOutModel.EmailAddress">
+                    <input type="email" class="form-control" ng-model="ctrl.checkOutModel.EmailAddress">
                 </div>
                 <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-left">
                     <label for="email">Note:</label>

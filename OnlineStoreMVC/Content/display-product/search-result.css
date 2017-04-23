@@ -7,20 +7,3 @@
     width:250px!important;
     height:250px!important;
 }
-
-/* start search form */
-.search-form input[type='text'] {
-    color: #000; 
-    border: 1px solid #000; 
-    background: rgba(255, 255, 255, 0.45); 
-    float:left;
-}
-.search-form input[type='submit'] {
-    float:left;
-}
-
-.search-form{
-    margin-top:20px;
-}
-
-/* end search form */

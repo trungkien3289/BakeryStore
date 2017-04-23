@@ -197,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\update-bakery-database-16042017.sql" />
+    <Content Include="contact.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -582,9 +583,17 @@
     <Content Include="Content\font-awesome\4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\html5shiv\3.7.2\html5shiv.min.js" />
     <Content Include="Content\Images\Banners\bakery-cake.png" />
+    <Content Include="Content\Images\Banners\bakerystore.jpg" />
     <Content Include="Content\Images\Banners\Banner.jpg" />
+    <Content Include="Content\Images\Banners\big-sale.png" />
+    <Content Include="Content\Images\Banners\cakes-collection.png" />
     <Content Include="Content\Images\Banners\faviorIcon.jpg" />
+    <Content Include="Content\Images\Banners\gift-banner.png" />
     <Content Include="Content\Images\Banners\kitchen-tools.png" />
+    <Content Include="Content\Images\Banners\shipping-banner.png" />
+    <Content Include="Content\Images\Banners\sub-banner1.png" />
+    <Content Include="Content\Images\Banners\sub-banner2.png" />
+    <Content Include="Content\Images\Banners\sub-banner3.png" />
     <Content Include="Content\Images\bx_loader.gif" />
     <Content Include="Content\Images\CMSNewsImages\item_0_21-3.jpg" />
     <Content Include="Content\Images\CMSNewsImages\item_0_3-home-default.jpg" />
@@ -598,6 +607,7 @@
     <Content Include="Content\Images\CMSNewsImages\item_0_thiet-ke-nha-o-theo-phong-cach-thon-da-3-356x220.jpg" />
     <Content Include="Content\Images\CMSNewsImages\item_0_XaviaLogo.png" />
     <Content Include="Content\Images\Common\list-style.png" />
+    <Content Include="Content\Images\Common\topscroll.png" />
     <Content Include="Content\Images\icon_gototop.png" />
     <Content Include="Content\Images\no-image.png" />
     <Content Include="Content\Images\ProductImages\LargeImages\ProductImage_0_13318493_1755331161404130_1419943251_n.jpg" />
@@ -2049,6 +2059,7 @@
     <Content Include="Views\Product\_CategoryTreeView.cshtml" />
     <Content Include="Views\Order\CheckOut.cshtml" />
     <Content Include="Views\Order\OrderSuccessful.cshtml" />
+    <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

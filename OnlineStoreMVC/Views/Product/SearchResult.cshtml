@@ -11,12 +11,6 @@
 <script src="~/Scripts/DisplayProduct/SearchProductResult.js"></script>
 <script src="~/Content/plugins/spin/spin.min.js"></script>
 
-<div class="search-form" style="margin-top:20px;">
-    <form action="/Product/SearchProduct" method="get">
-        <input type="text" placeholder="Search..." name="searchString" value="@ViewBag.SearchTitle">
-        <input type="submit" value="">
-    </form>
-</div>
 <!--content-->
 <div class="product">
     <div class="container">
@@ -77,6 +71,7 @@
                 $.each(products, function () {
                     console.log(this);
                 });
+                window.location.replace("/Order/CheckOut");
             },
             clickOnAddToCart: function ($addTocart) {
                 goToCartIcon($addTocart);
@@ -92,36 +87,3 @@
 
     });
 </script>
-
-<!-- product -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body modal-spa">
-                <div class="col-md-5 span-2">
-                    <div class="item">
-                        <img src="images/of24.png" class="img-responsive" alt="">
-                    </div>
-                </div>
-                <div class="col-md-7 span-1 ">
-                    <h3>Wheat(500 g)</h3>
-                    <p class="in-para"> There are many variations of passages of Lorem Ipsum.</p>
-                    <div class="price_single">
-                        <span class="reducedfrom "><del>$2.00</del>$1.50</span>
-
-                        <div class="clearfix"></div>
-                    </div>
-                    <h4 class="quick">Quick Overview:</h4>
-                    <p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
-                    <div class="add-to">
-                        <button class="btn btn-danger my-cart-btn my-cart-btn1 " data-id="24" data-name="Wheat" data-summary="summary 24" data-price="1.50" data-quantity="1" data-image="images/of24.png">Add to Cart</button>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-</div>
