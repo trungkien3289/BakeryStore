@@ -16,10 +16,10 @@ namespace OnlineStore.Model.Mapper
             ProductFullView productFullView = new ProductFullView()
             {
                 Id = product.Id,
-                ProductCode = product.ProductCode,
+                //ProductCode = product.ProductCode!=null?product.ProductCode:"",
                 Name = product.Name,
                 Price = product.Price,
-                Quantity = product.Quantity,
+                //Quantity = product.Quantity,
                 Unit = product.Unit,
                 BrandId = product.BrandId,
                 CoverImageId = product.CoverImageId,
@@ -27,7 +27,7 @@ namespace OnlineStore.Model.Mapper
                 Description2 = product.Description2,
                 TotalView = product.TotalView,
                 TotalBuy = product.TotalBuy,
-                Tags = product.Tags,
+                //Tags = product.Tags,
                 IsNewProduct = product.IsNewProduct,
                 IsBestSellProduct = product.IsBestSellProduct,
                 SortOrder = product.SortOrder,

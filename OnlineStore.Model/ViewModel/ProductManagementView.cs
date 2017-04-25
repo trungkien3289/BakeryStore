@@ -10,6 +10,7 @@ namespace OnlineStore.Model.ViewModel
 {
     public class ProductSummaryViewModel
     {
+        [DisplayName("Mã sản phẩm")]
         public int Id { get; set; }
         [DisplayName("Mã sản phẩm")]
         public string ProductCode { get; set; }
@@ -28,14 +29,14 @@ namespace OnlineStore.Model.ViewModel
     public class ProductFullView
     {
         public int Id { get; set; }
-        [DisplayName("Mã sản phẩm")]
-        public string ProductCode { get; set; }
+        //[DisplayName("Mã sản phẩm")]
+        //public string ProductCode { get; set; }
         [DisplayName("Tên sản phẩm")]
         public string Name { get; set; }
         [DisplayName("Giá bán")]
         public decimal Price { get; set; }
-        [DisplayName("Số lượng")]
-        public Nullable<int> Quantity { get; set; }
+        //[DisplayName("Số lượng")]
+        //public Nullable<int> Quantity { get; set; }
         [DisplayName("Đơn vị")]
         public Nullable<int> Unit { get; set; }
         [DisplayName("Thương hiệu")]
@@ -50,8 +51,8 @@ namespace OnlineStore.Model.ViewModel
         public Nullable<int> TotalView { get; set; }
         [DisplayName("Số lượt mua")]
         public Nullable<int> TotalBuy { get; set; }
-        [DisplayName("Từ khóa tìm kiếm")]
-        public string Tags { get; set; }
+        //[DisplayName("Từ khóa tìm kiếm")]
+        //public string Tags { get; set; }
         [DisplayName("Sản phẩm mới")]
         public bool IsNewProduct { get; set; }
         [DisplayName("Sản phẩm bán chạy nhất")]

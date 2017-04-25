@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Model.ViewModel;
 using OnlineStore.Infractructure.Helper;
+using LinqKit;
 
 namespace OnlineStore.Service.Implements
 {
@@ -82,11 +83,26 @@ namespace OnlineStore.Service.Implements
         /// Get orders list
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ShortSummaryOrderModel> GetOrders(int pageNumber, int pageSize, out int totalItems)
+        public IEnumerable<ShortSummaryOrderModel> GetOrders(int pageNumber, int pageSize, Nullable<DateTime> startDate, Nullable<DateTime> endDate, out int totalItems)
         {
-            IEnumerable<ecom_Orders> orders = orderRepository.GetAllOrders();
+            var searchQuery = PredicateBuilder.True<ecom_Orders>();
+
+            if (startDate != null)
+            {
+                searchQuery = searchQuery.And(p => p.CreatedDate >= (DateTime)startDate);
+            }
+            if (endDate != null)
+            {
+                searchQuery = searchQuery.And(p => p.CreatedDate <= (DateTime)endDate);
+            }
+
+            IEnumerable<ecom_Orders> ordersMatchingRefinement = orderRepository.Get(
+                filter: searchQuery, includeProperties: "");
+                 totalItems = ordersMatchingRefinement.Count();
+                 ordersMatchingRefinement = ordersMatchingRefinement.OrderBy(o => o.CreatedDate).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+
             // Convert to view model
-            IEnumerable<ShortSummaryOrderModel> orderList = from o in orders
+            IEnumerable<ShortSummaryOrderModel> orderList = from o in ordersMatchingRefinement
                                                             select new ShortSummaryOrderModel()
                                                             {
                                                                 Id = o.Id,
@@ -94,13 +110,11 @@ namespace OnlineStore.Service.Implements
                                                                 OrderStatus = EnumHelper.GetDescriptionFromEnum((OrderStatus)o.OrderStatus),
                                                                 PhoneOfRecipient = o.PhoneOfRecipient,
                                                                 AddressOfRecipient = o.AddressOfRecipient,
-                                                                CreatedDate = o.CreatedDate !=null?((DateTime)o.CreatedDate).ToString("dd/MM/yyyy hh:mm:ss"):""
+                                                                CreatedDate = o.CreatedDate != null ? ((DateTime)o.CreatedDate).ToString("dd/MM/yyyy hh:mm:ss") : ""
                                                             };
-            totalItems = orders.Count();
-            IEnumerable<ShortSummaryOrderModel> returnOrdersList = orderList.OrderBy(b => b.OrderStatus).OrderBy(b => b.CreatedDate)
-                .Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+           
 
-            return returnOrdersList;
+            return orderList;
         }
 
         /// <summary>

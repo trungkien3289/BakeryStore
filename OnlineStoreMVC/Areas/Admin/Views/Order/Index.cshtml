@@ -24,21 +24,31 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="box-tools pull-right" style="padding-right: 15px; padding-bottom: 10px;">
-            @Html.ActionLink("THÊM", "Create", null, new { @class = "btn btn-primary btn-sm" })
-        </div>
-    </div><!--Function group buttons panel-->
-    <div class="row">
         <div class="col-md-12">
             <div class="box ">
                 <div class="box-header with-border">
                     <h3 class="box-title">Danh sách đơn hàng</h3>
                 </div><!--Header-->
+                <div class="box-filterpanel">
+                    <form action="/Admin/Order/Index" method="get" class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label" for="FromDate">Từ Ngày</label>
+                            <input id="StartDate" class="form-control" placeholder="Từ ngày" name="startDate" value="@ViewBag.startDate">
+                        </div>
+                        <div class="form-group" style="margin-left:10px;">
+                            <label class="control-label" for="ToDate">Đến Ngày</label>
+                            <input id="EndDate" class="form-control" placeholder="Đến ngày" name="endDate" value="@ViewBag.endDate">
+                        </div>
+                        <div class="form-group" style="margin-left:10px;">
+                            <input type="submit" class="btn btn-default" value="Tìm" style="margin-top:24px;" />
+                        </div>
+                    </form>
+                </div>
                 <div class="box-body">
                     <table class="table table-hover table-condensed table-responsive table-bordered">
                         <tr>
                             <th>
-                                ORDER ID
+                                MÃ ĐƠN HÀNG
                             </th>
                             <th>
                                 TÊN NGƯỜI NHẬN
@@ -84,7 +94,7 @@
                     </table>
                 </div><!--Body-->
                 <div class="box-footer clearfix">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, keyword = Request.QueryString["keyword"] }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, keyword = Request.QueryString["keyword"], startDate = ViewBag.startdate, endDate = ViewBag.endDate }))
                 </div><!--Footer-->
             </div>
         </div>

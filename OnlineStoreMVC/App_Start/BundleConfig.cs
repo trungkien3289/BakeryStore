@@ -35,7 +35,8 @@ namespace OnlineStoreMVC
                         "~/Content/chosen-library/chosen.jquery.min.js",
                         "~/Content/plugins/spin/spin.min.js",
                         "~/Content/plugins/daterangepicker/moment.js",
-                        "~/Content/plugins/daterangepicker/daterangepicker.js"
+                        "~/Content/plugins/daterangepicker/daterangepicker.js",
+                         "~/Content/plugins/datepicker/bootstrap-datepicker.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/others").Include(
@@ -52,7 +53,8 @@ namespace OnlineStoreMVC
                       "~/Content/dist/css/skins/skin-green.min.css",
                       "~/Content/common.css",
                       "~/Content/chosen-library/chosen.min.css",
-                      "~/Content/plugins/daterangepicker/daterangepicker-bs3.css"
+                      "~/Content/plugins/daterangepicker/daterangepicker-bs3.css",
+                      "~/Content/plugins/datepicker/datepicker3.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/brandManagement").Include(

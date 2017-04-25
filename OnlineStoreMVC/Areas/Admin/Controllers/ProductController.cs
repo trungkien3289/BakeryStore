@@ -190,13 +190,20 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
                             var imageId = service.AddImage(largeImage);
                             // Add product
                             productRequest.CoverImageId = imageId;
-                            service.AddProduct(productRequest);
-                            return RedirectToAction("Index");
+                            bool isAddSuccess = service.AddProduct(productRequest);
+                            if (isAddSuccess)
+                            {
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                ViewBag.Error = "Upload product image fail!";
+                            }
                         }
                         else
                         {
                             // use imageResult.ErrorMessage to show the error
-                            ViewBag.Error = "Upload product image fail";
+                            ViewBag.Error = "Create product fail!";
                         }
                     }
                 }

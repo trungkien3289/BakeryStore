@@ -85,7 +85,7 @@ namespace OnlineStore.Service.Implements
         {
             IEnumerable<ecom_Products> products = db.GetAllProductsWithoutDelete();
             totalItems = products.Count();
-            IEnumerable<ProductSummaryViewModel> returnCategoryList = products.OrderBy(b => b.Name).Skip(pageSize * (pageNumber - 1)).Take(pageSize).Select(p => new ProductSummaryViewModel()
+            IEnumerable<ProductSummaryViewModel> returnCategoryList = products.OrderBy(b => b.SortOrder).Skip(pageSize * (pageNumber - 1)).Take(pageSize).Select(p => new ProductSummaryViewModel()
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -146,7 +146,7 @@ namespace OnlineStore.Service.Implements
             {
                 ecom_Products product = new ecom_Products()
                 {
-                    ProductCode = newProduct.ProductCode,
+                    ProductCode = newProduct.ProductCode != null?newProduct.ProductCode:"",
                     Name = newProduct.Name,
                     Price = newProduct.Price,
                     Quantity = newProduct.Quantity,
@@ -155,7 +155,8 @@ namespace OnlineStore.Service.Implements
                     CoverImageId = newProduct.CoverImageId,
                     Description = newProduct.Description,
                     Description2 = newProduct.Description2,
-                    Tags = newProduct.Tags,
+                    //Tags = newProduct.Tags,
+                    Tags = "",
                     IsNewProduct = newProduct.IsNewProduct,
                     IsBestSellProduct = newProduct.IsBestSellProduct,
                     SortOrder = newProduct.SortOrder,
@@ -210,15 +211,15 @@ namespace OnlineStore.Service.Implements
             }
             else
             {
-                product.ProductCode = productViewModel.ProductCode;
+                //product.ProductCode = productViewModel.ProductCode;
                 product.Name = productViewModel.Name;
                 product.Price = productViewModel.Price;
-                product.Quantity = productViewModel.Quantity;
+                //product.Quantity = productViewModel.Quantity;
                 product.Unit = productViewModel.Unit;
                 product.BrandId = productViewModel.BrandId;
                 product.Description = productViewModel.Description;
                 product.Description2 = productViewModel.Description2;
-                product.Tags = productViewModel.Tags;
+                //product.Tags = productViewModel.Tags;
                 product.IsNewProduct = productViewModel.IsNewProduct;
                 product.IsBestSellProduct = productViewModel.IsBestSellProduct;
                 product.SortOrder = productViewModel.SortOrder;

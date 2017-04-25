@@ -26,8 +26,8 @@ namespace OnlineStore.Model.MessageModel
         public string Description { get; set; }
         [DisplayName("Mô tả chi tiết")]
         public string Description2 { get; set; }
-        [DisplayName("Từ khóa tìm kiếm")]
-        public string Tags { get; set; }
+        //[DisplayName("Từ khóa tìm kiếm")]
+        //public string Tags { get; set; }
         [DisplayName("Sản phẩm mới?")]
         public bool IsNewProduct { get; set; }
         [DisplayName("Sản phẩm bán chạy?")]

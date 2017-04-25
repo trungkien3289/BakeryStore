@@ -25,7 +25,7 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="pageSize">number of order on each page</param>
         /// <param name="totalItems">number total items</param>
         /// <returns></returns>
-        IEnumerable<ShortSummaryOrderModel> GetOrders(int pageNumber, int pageSize, out int totalItems);
+        IEnumerable<ShortSummaryOrderModel> GetOrders(int pageNumber, int pageSize, Nullable<DateTime> startDate, Nullable<DateTime> endDate, out int totalItems);
 
         /// <summary>
         /// Delete Order

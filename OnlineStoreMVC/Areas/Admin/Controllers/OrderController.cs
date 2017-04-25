@@ -14,6 +14,7 @@ using OnlineStore.Model.ViewModel;
 using OnlineStore.Infractructure.Utility;
 using OnlineStore.Infractructure.Helper;
 using OnlineStore.Model.MessageModel;
+using System.Globalization;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
@@ -74,12 +75,28 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
 
         #region Actions
         // GET: Admin/Order
-        public ActionResult Index(string keyword, int page = 1)
+        public ActionResult Index(string keyword, int page = 1, string startDate = null, string endDate = null)
         {
-            int totalItems = 0;
-            var orders = orderService.GetOrders(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, out totalItems);
-            IPagedList<ShortSummaryOrderModel> pageProducts = new StaticPagedList<ShortSummaryOrderModel>(orders, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
+            DateTimeStyles styles = DateTimeStyles.None;
+            DateTime outStartDate;
+            DateTime outEndDate;
+            DateTime? fromDate = null;
+            DateTime? toDate = null;
+            if (DateTime.TryParse(startDate, culture, styles, out outStartDate))
+            {
+                fromDate = outStartDate;
+            }
+            if (DateTime.TryParse(endDate, culture, styles, out outEndDate))
+            {
+                toDate = outEndDate;
+            }
 
+            int totalItems = 0;
+            var orders = orderService.GetOrders(page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, fromDate, toDate, out totalItems);
+            IPagedList<ShortSummaryOrderModel> pageProducts = new StaticPagedList<ShortSummaryOrderModel>(orders, page, OnlineStore.Infractructure.Utility.Define.PAGE_SIZE, totalItems);
+            ViewBag.startDate = startDate;
+            ViewBag.endDate = endDate;
             return View(pageProducts);
         }
 

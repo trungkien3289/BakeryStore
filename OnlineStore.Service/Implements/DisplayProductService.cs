@@ -91,6 +91,9 @@ namespace OnlineStore.Service.Implements
                     productsMatchingRefinement = productsMatchingRefinement
                     .OrderByDescending(p => p.Name);
                     break;
+                default: productsMatchingRefinement = productsMatchingRefinement
+                     .OrderByDescending(p => p.SortOrder);
+                    break;
             }
 
             return productsMatchingRefinement.ToList();
@@ -194,7 +197,7 @@ namespace OnlineStore.Service.Implements
             var searchQuery = PredicateBuilder.True<ecom_Products>();
             searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
-                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").Take(top).OrderBy(p => p.Name).ToList();
+                filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").Take(top).OrderBy(p => p.SortOrder).ToList();
 
             return productsMatchingRefinement.ConvertToProductSummaryViews();
         }

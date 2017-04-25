@@ -1,4 +1,14 @@
 ﻿var OrderManagement = {
+    init: function () {
+        // Init date filter components
+        $("#StartDate").datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+        $("#EndDate").datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    },
     deleteItem: function (id) {
         var title = "Xóa đơn hàng";
         var message = "Bạn có chắc chắn muốn xóa đơn hàng " + id + " này không ?";
@@ -17,3 +27,8 @@
         });
     }
 }
+
+
+$(function () {
+    OrderManagement.init();
+});
