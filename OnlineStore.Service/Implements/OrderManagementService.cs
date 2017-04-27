@@ -254,6 +254,51 @@ namespace OnlineStore.Service.Implements
                 return null;
             }
         }
+
+        /// <summary>
+        /// Get sale statistics after products
+        /// </summary>
+        /// <param name="fromDate">filter from date</param>
+        /// <param name="toDate">filter to date</param>
+        /// <returns></returns>
+        public IList<SaleStatisticsModel> getSaleStatisticsAfterProduct(int pageNumber,int pageSize, Nullable<DateTime> fromDate, Nullable<DateTime> toDate, out int totalItems)
+        {
+            var searchQuery = PredicateBuilder.True<ecom_Orders>();
+
+            if (fromDate != null)
+            {
+                searchQuery = searchQuery.And(p => p.CreatedDate >= (DateTime)fromDate);
+            }
+            if (toDate != null)
+            {
+                searchQuery = searchQuery.And(p => p.CreatedDate < (DateTime)toDate);
+            }
+
+            IList<SaleStatisticsModel> productList;
+
+            using (var db = new OnlineStoreMVCEntities())
+            {
+                productList = db.ecom_Orders.Include("ecom_OrderDetails").AsExpandable().Where(searchQuery)
+                   .SelectMany(o => o.ecom_OrderDetails)
+                   .GroupBy(od => new {od.ProductID,
+                                    od.PriceOfUnit})
+                   .Select(gr => new SaleStatisticsModel() { 
+                    ProductId = gr.Key.ProductID,
+                    UnitPrice = gr.Key.PriceOfUnit,
+                    Quantity = gr.Count()
+                   }).ToList();
+
+                foreach (var item in productList)
+                {
+                    var productDetails = productRepository.GetByID(item.ProductId);
+                    item.ProductName = productDetails.Name;
+                    item.ImagePath = productDetails.CoverImage.ImagePath;
+                }
+            }
+            totalItems = productList.Count();
+            return productList.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+        }
+
         #endregion
 
         #region Release resources
@@ -268,12 +313,6 @@ namespace OnlineStore.Service.Implements
         }
 
         #endregion
-
-
-
-
-
-
 
         
     }

@@ -23,7 +23,6 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         #region Properties
 
         private IOrderManagementService orderService;
-        private OnlineStoreMVCEntities db = new OnlineStoreMVCEntities();
 
         #endregion 
 
@@ -172,7 +171,7 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                orderService.Dispose();
             }
             base.Dispose(disposing);
         }

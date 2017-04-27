@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Service.Interfaces
 {
-    public interface IMenuService
+    public interface IMenuService:IDisposable
     {
         IList<MenuView> GetMenuByType(int typeId);        
     }

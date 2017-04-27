@@ -130,6 +130,41 @@ var DisplayProductManagement = {
             var searchString = $("#tm_search_query").val().trim();
             DisplayProductManagement.updateSearch(searchString);
         });
+
+        DisplayProductManagement.bindEventForAddCartBtn();
+    },
+    goToCartIcon:function ($addTocartBtn) {
+        var $cartIcon = $(".my-cart-icon");
+        var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });
+        $addTocartBtn.prepend($image);
+        var position = $cartIcon.position();
+        $image.animate({
+            top: position.top,
+            left: position.left
+        }, 500, "linear", function () {
+            $image.remove();
+        });
+    },
+    bindEventForAddCartBtn:function(){
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function (products) {
+                console.log(products);
+                window.location.replace("/Order/CheckOut");
+            },
+            clickOnAddToCart: function ($addTocart) {
+                DisplayProductManagement.goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function (products) {
+                var total = 0;
+                $.each(products, function () {
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
     },
     updateSelectedBrandList: function (brandId, isAdd) {
         /// <summary>
@@ -250,6 +285,8 @@ var DisplayProductManagement = {
                 $(".list-product-container").append(itemHtml);
             }
         }
+        debugger
+        DisplayProductManagement.bindEventForAddCartBtn();
     },
     genarateHtmlProductItem: function (product) {
         /// <summary>

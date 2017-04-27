@@ -83,7 +83,7 @@ namespace OnlineStoreMVC.Controllers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            //service.Dispose();
+            service.Dispose();
             base.Dispose(disposing);
         }
 

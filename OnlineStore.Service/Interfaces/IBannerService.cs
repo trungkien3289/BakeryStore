@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Service.Interfaces
 {
-    public interface IBannerService
+    public interface IBannerService:IDisposable
     {
         IList<BannerViewModel> GetBanners1ForHomePage();
         BannerViewModel GetBanners2ForHomePage();

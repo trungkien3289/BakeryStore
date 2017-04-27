@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Service.Interfaces
 {
-    public interface ICMSNewsService
+    public interface ICMSNewsService : IDisposable
     {
         IList<CMSNewsView> GetCMSNews(int pageNumber, int pageSize, out int totalItems);
         IList<CMSNewsView> GetCMSNewsByCategoryId(int categoryId, int pageNumber, int pageSize, out int totalItems);

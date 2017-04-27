@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.Service.Interfaces
 {
-    public interface IOrderManagementService
+    public interface IOrderManagementService:IDisposable
     {
         /// <summary>
         /// Create order
@@ -61,5 +61,7 @@ namespace OnlineStore.Service.Interfaces
         /// <param name="p"></param>
         /// <returns></returns>
         UpdateOrderModel getOrderForEdit(int p);
+
+        IList<SaleStatisticsModel> getSaleStatisticsAfterProduct(int page,int pageSize, Nullable<DateTime> fromDate, Nullable<DateTime> toDate,out int totalItems);
     }
 }

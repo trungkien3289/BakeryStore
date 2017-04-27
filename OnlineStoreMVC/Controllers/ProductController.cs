@@ -17,7 +17,6 @@ namespace OnlineStoreMVC.Controllers
     {
         #region properties
 
-        //public IDisplayProductService service = new DisplayProductService();
         private static int productPerPage = 10;
 
         #endregion
@@ -257,6 +256,19 @@ namespace OnlineStoreMVC.Controllers
             SearchProductRequest productSearchRequest = GenarateSeachRequest(request);
             SearchProductResponse response = service.SearchByProductName(productSearchRequest,SearchType.SearchString);
             return Json(response);
+        }
+
+        #endregion
+
+        #region Release resources
+
+        /// <summary>
+        /// Dispose database connection
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
 
         #endregion

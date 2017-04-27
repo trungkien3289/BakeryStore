@@ -12,9 +12,14 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
     {
         #region Properties
 
-        private IMenuService _menuService = new MenuService();
+        private IMenuService _menuService;
 
         #endregion
+
+        public HomeController()
+        {
+            _menuService = new MenuService();
+        }
 
         #region Actions
         public ActionResult Index()
@@ -27,6 +32,20 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             var menu = _menuService.GetMenuByType((int)OnlineStore.Infractructure.Utility.Define.MenuEnum.Admin);
             return PartialView(menu);
+        }
+
+        #endregion
+
+        #region Release resources
+
+        /// <summary>
+        /// Dispose database connection
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            _menuService.Dispose();
         }
 
         #endregion

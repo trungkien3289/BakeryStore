@@ -137,6 +137,8 @@ namespace OnlineStoreMVC.Controllers
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+            _bannerService.Dispose();
+            _cmsNewsService.Dispose();
         }
 
         #endregion

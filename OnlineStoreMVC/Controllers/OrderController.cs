@@ -51,5 +51,19 @@ namespace OnlineStoreMVC.Controllers
         {
             return View();
         }
+
+        #region Release resources
+
+        /// <summary>
+        /// Dispose database connection
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            orderService.Dispose();
+        }
+
+        #endregion
     }
 }

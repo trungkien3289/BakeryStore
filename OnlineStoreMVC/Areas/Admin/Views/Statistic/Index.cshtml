@@ -1,0 +1,108 @@
+﻿@using OnlineStore.Model.MessageModel
+@using PagedList.Mvc
+@using PagedList;
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model IPagedList<SaleStatisticsModel>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        THỐNG KÊ ĐẶT HÀNG
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Home/Index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box ">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Danh sách mặt hàng</h3>
+                </div><!--Header-->
+                <div class="box-filterpanel">
+                    <form action="/Admin/Statistic/Index" method="get" class="form-inline">
+                        <div class="form-group">
+                            <label class="control-label" for="FromDate">Từ Ngày</label>
+                            <input id="StartDate" class="form-control" placeholder="Từ ngày" name="startDate" value="@ViewBag.startDate">
+                        </div>
+                        <div class="form-group" style="margin-left:10px;">
+                            <label class="control-label" for="ToDate">Đến Ngày</label>
+                            <input id="EndDate" class="form-control" placeholder="Đến ngày" name="endDate" value="@ViewBag.endDate">
+                        </div>
+                        <div class="form-group" style="margin-left:10px;">
+                            <input type="submit" class="btn btn-default" value="Tìm" style="margin-top:24px;" />
+                        </div>
+                    </form>
+                </div>
+                <div class="box-body">
+                    <table class="table table-hover table-condensed table-responsive table-bordered">
+                        <tr>
+                            <th>
+                                HÌNH ẢNH
+                            </th>
+                            <th>
+                                TÊN SẢN PHẨM
+                            </th>
+                            <th>
+                                SỐ LƯỢNG
+                            </th>
+                            <th>
+                                GIÁ MỖI ĐƠN VỊ
+                            </th>
+                            <th>
+                                TỔNG TIỀN
+                            </th>
+                        </tr>
+
+                        @foreach (SaleStatisticsModel item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.ImagePath" height="70" width="70" alt="ảnh không tồn tại" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                </td>
+                                <td>
+                                    @(item.Quantity * item.UnitPrice)
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div><!--Body-->
+                <div class="box-footer clearfix">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, keyword = Request.QueryString["keyword"], startDate = ViewBag.startdate, endDate = ViewBag.endDate }))
+                </div><!--Footer-->
+            </div>
+        </div>
+    </div><!--Content panel-->
+</section>
+
+<script>
+    $(function () {
+        $("#StartDate").datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+        $("#EndDate").datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    })
+
+</script>
+

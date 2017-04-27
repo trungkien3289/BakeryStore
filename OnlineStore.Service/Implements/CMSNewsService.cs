@@ -314,5 +314,17 @@ namespace OnlineStore.Service.Implements
                 throw ex;
             }
         }
+
+        #region Release resources
+
+        /// <summary>
+        /// Dispose database connection using in repositories, which used in this service
+        /// </summary>
+        public void Dispose()
+        {
+
+        }
+
+        #endregion
     }
 }
