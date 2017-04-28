@@ -37,7 +37,7 @@ namespace OnlineStore.Model.Repository
         /// <returns></returns>
         public IEnumerable<ecom_Categories> GetAllCategoriesWithoutDelete()
         {
-            return dbSet.Where(c => c.Status != (int)Define.Status.Delete).ToList();
+            return dbSet.Where(c => c.Status == (int)Define.Status.Active).ToList();
         }
         
         /// <summary>

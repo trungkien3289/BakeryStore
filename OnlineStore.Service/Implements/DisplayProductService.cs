@@ -71,6 +71,8 @@ namespace OnlineStore.Service.Implements
                 searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains((int)request.CategoryId));
             }
 
+            searchQuery = searchQuery.And(p => p.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
+
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
                 filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images");
             switch (request.SortBy)
@@ -124,6 +126,8 @@ namespace OnlineStore.Service.Implements
             {
                 searchQuery = searchQuery.And(p => p.IsBestSellProduct == true);
             }
+
+            searchQuery = searchQuery.And(p => p.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
 
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
                 filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories");
@@ -192,10 +196,16 @@ namespace OnlineStore.Service.Implements
 
         #region Public functions
 
+        /// <summary>
+        /// Get top list products after category Id
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
         public IEnumerable<ProductSummaryView> GetTopProductsByCategoryId(int categoryId,int top)
         {
             var searchQuery = PredicateBuilder.True<ecom_Products>();
-            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId));
+            searchQuery = searchQuery.And(p => p.ecom_Categories.Select(c => c.Id).Contains(categoryId) && p.Status == (int)OnlineStore.Infractructure.Utility.Define.Status.Active);
             IEnumerable<ecom_Products> productsMatchingRefinement = db.Get(
                 filter: searchQuery, includeProperties: "ecom_Brands,ecom_Categories,share_Images").Take(top).OrderBy(p => p.SortOrder).ToList();
 

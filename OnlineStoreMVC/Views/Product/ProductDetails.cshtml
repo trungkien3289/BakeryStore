@@ -25,8 +25,8 @@
     <!--banner-->
 <div class="banner-top">
     <div class="container">
-        <h3>Product Details</h3>
-        <h4><a href="/Home">Home</a><label>/</label>Product Details</h4>
+        <h3>Chi Tiết Sản Phẩm</h3>
+        <h4><a href="/Home">Trang chủ</a><label>/</label>Chi tiết sản phẩm</h4>
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -70,7 +70,7 @@
                         <li><a href="#" class="icon dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
                     </ul>
                     <div class="add add-3">
-                        <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@Model.Id" data-name="@Model.Name" data-summary="@Model.Description" data-price="@Model.Price" data-quantity="1" data-image="@Model.CoverImageUrl.smallImagePath">Add to Cart</button>
+                        <button class="btn btn-danger my-cart-btn my-cart-b" data-id="@Model.Id" data-name="@Model.Name" data-summary="@Model.Description" data-price="@Model.Price" data-quantity="1" data-image="@Model.CoverImageUrl.smallImagePath">Thêm vào giỏ</button>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -81,7 +81,7 @@
 </div>
 <!---->
 <div class="content-top offer-w3agile">
-    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Special Offers" } })
+    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Sản Phẩm Mới" } })
 </div>
 
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

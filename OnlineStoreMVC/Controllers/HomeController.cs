@@ -51,18 +51,14 @@ namespace OnlineStoreMVC.Controllers
         {
             PopulateNewProductList();
             PopulateBestSellProductList();
-           
+            // Populate list products by main categories
+            ViewBag.ListBakeryProducts = GetTopProduct(MainProductCategory.BakeryProducts, 10);
+            ViewBag.ListKitChenTools = GetTopProduct(MainProductCategory.KitchenTools, 10);
+            ViewBag.Banner = _bannerService.GetBanners1ForHomePage();
+            //ViewBag.BannerPopup = _bannerService.GetActivePopupForHomePage();
             //PopulateHighPriorityOrderProductList();
             //PopulateCategoryList();
             //PopulateTopCategoryList();
-
-            // Populate list products by main categories
-
-            ViewBag.ListBakeryProducts = GetTopProduct(MainProductCategory.BakeryProducts, 10);
-            ViewBag.ListKitChenTools = GetTopProduct(MainProductCategory.KitchenTools, 10);
-
-            ViewBag.Banner = _bannerService.GetBanners1ForHomePage();
-            //ViewBag.BannerPopup = _bannerService.GetActivePopupForHomePage();
             return View();
         }
 

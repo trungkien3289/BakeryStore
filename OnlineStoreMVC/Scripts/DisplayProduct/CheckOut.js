@@ -75,7 +75,6 @@
         self.checkOut = function () {
             // get list products in cart
             var products = getListProductInCart();
-            debugger
             console.log(self.checkOutModel);
             self.checkOutModel.products = getListProductInCart();
 
@@ -97,7 +96,6 @@
             });
         }
         self.removeProductFromCart = function (element, id) {
-        debugger
             var deletedItemIndex = -1;
                 for (var i = 0; i < self.products.length; i++) {
                     if (self.products[i].id == id) {

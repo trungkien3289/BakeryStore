@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "CheckOut Cart";
+    ViewBag.Title = "Thanh Toán";
 }
 
 <link href="~/Content/display-product/checkout.css" rel="stylesheet" />
@@ -10,8 +10,8 @@
 <!--banner-->
 <div class="banner-top">
     <div class="container">
-        <h3>Checkout Cart</h3>
-        <h4><a href="/Home/Index">Home</a><label>/</label>CheckOut</h4>
+        <h3>Đặt Hàng</h3>
+        <h4><a href="/Home/Index">Trang Chủ</a><label>/</label>Đặt Hàng</h4>
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="container" ng-controller="ecom_CheckOut_Controller as ctrl">
         <!-- Products list -->
         <div class="spec ">
-            <h3>Products List</h3>
+            <h3>Danh Sách Sản Phẩm</h3>
             <div class="ser-t">
                 <b></b>
                 <span><i></i></span>
@@ -41,9 +41,9 @@
         <div id="List_ProductsOfCart">
             <table class="table ">
                 <tr>
-                    <th class="t-head head-it ">Products</th>
-                    <th class="t-head">Price</th>
-                    <th class="t-head">Quantity</th>
+                    <th class="t-head head-it ">Sản Phẩm</th>
+                    <th class="t-head">Giá</th>
+                    <th class="t-head">Số Lượng</th>
                     <th class="t-head"></th>
                 </tr>
                 <tbody class="cross" ng-repeat="product in ctrl.products track by product.id">
@@ -66,14 +66,14 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="t-data t-w3l"><a class="btn-removeproduct-checkout" ng-click="ctrl.removeProductFromCart($event.currentTarget, product.id, product.quantity)">Remove</a></td>
+                        <td class="t-data t-w3l"><a class="btn-removeproduct-checkout" ng-click="ctrl.removeProductFromCart($event.currentTarget, product.id, product.quantity)">Xóa</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="spec ">
-            <h3>Information</h3>
+            <h3>Thông Tin Khách Hàng</h3>
             <div class="ser-t">
                 <b></b>
                 <span><i></i></span>
@@ -84,27 +84,27 @@
         <div class="row">
             <form name="formCheckOut" ng-submit="ctrl.checkOut()">
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Full Name:<span style="color:red;">(*)</span></label>
+                    <label for="email">Tên:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.FullName">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Address:<span style="color:red;">(*)</span></label>
+                    <label for="email">Địa Chỉ:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.Address">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Phone Number:<span style="color:red;">(*)</span></label>
+                    <label for="email">Số Điện Thoại:<span style="color:red;">(*)</span></label>
                     <input type="text" required class="form-control" ng-model="ctrl.checkOutModel.PhoneNumber">
                 </div>
                 <div class="form-group col-md-6 col-sm-6 col-xs-12 pull-left">
-                    <label for="email">Email address:</label>
+                    <label for="email">Địa chỉ email:</label>
                     <input type="email" class="form-control" ng-model="ctrl.checkOutModel.EmailAddress">
                 </div>
                 <div class="form-group col-md-12 col-sm-12 col-xs-12 pull-left">
-                    <label for="email">Note:</label>
+                    <label for="email">Ghi chú:</label>
                     <textarea rows="5" class="form-control" ng-model="ctrl.checkOutModel.Note"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="submit" ng-disabled="formCheckOut.$invalid" class="btn btn-danger btn-checkout" value="CheckOut" />
+                    <input type="submit" ng-disabled="formCheckOut.$invalid" class="btn btn-danger btn-checkout" value="Đặt hàng" />
                 </div>
             </form>
         </div>

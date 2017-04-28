@@ -1,11 +1,13 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@{
+    var searchText = Request.QueryString["searchString"];
+}
 <div class="header">
 
     <div class="container">
 
         <div class="logo">
-            <h1><a href="/Home/Index"><b>T<br>H<br>E</b>Bakery Store<span>The Best Choise For You</span></a></h1>
+            <h1><a href="/Home/Index"><b>T<br>H<br>E</b>Bakery Store<span>Sự lựa chọn tuyệt vời nhất cho bạn</span></a></h1>
         </div>
 
         <div class="header-ri">
@@ -20,7 +22,7 @@
         <div class="search-container">
             <div class="search-form">
                 <form action="/Product/SearchProduct" method="get">
-                    <input type="text" placeholder="Search..." name="searchString">
+                    <input type="text" placeholder="Nhập tên sản phẩm..." value="@searchText" name="searchString">
                     <input type="submit" value=" ">
                 </form>
             </div>
@@ -38,9 +40,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                     <ul class="nav navbar-nav ">
-                        <li class=" active"><a href="/Home" class="hyper "><span>Home</span></a></li>
+                        <li class=" active"><a href="/Home" class="hyper "><span>Trang Chủ</span></a></li>
                         <li class="dropdown ">
-                            <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Kitchen<b class="caret"></b></span></a>
+                            <a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>Nhà Bếp<b class="caret"></b></span></a>
                             <ul class="dropdown-menu multi">
                                 <div class="row">
                                     @Html.Partial("_ListSubCategory", (List<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>)ViewBag.KitchenToolsCategoryList)
@@ -52,7 +54,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"><span> Bakery <b class="caret"></b></span></a>
+                            <a href="#" class="dropdown-toggle hyper" data-toggle="dropdown"><span> Bánh <b class="caret"></b></span></a>
                             <ul class="dropdown-menu multi multi1">
                                 <div class="row">
                                     @Html.Partial("_ListSubCategory", (List<OnlineStore.Model.ViewModel.SummaryCategoryViewModel>)ViewBag.BakeryCategoryList)
@@ -63,7 +65,7 @@
                                 </div>
                             </ul>
                         </li>
-                        <li><a href="/Home/Contact" class="hyper"><span>Contact Us</span></a></li>
+                        <li><a href="/Home/Contact" class="hyper"><span>Liên Hệ</span></a></li>
                     </ul>
                 </div>
             </nav>

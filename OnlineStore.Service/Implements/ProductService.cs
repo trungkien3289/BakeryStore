@@ -438,6 +438,7 @@ namespace OnlineStore.Service.Implements
             brandRepository.Dispose();
             imageRepository.Dispose();
             categoryRepository.Dispose();
+            productGroupRepository.Dispose();
         }
 
         #endregion

@@ -22,8 +22,6 @@
 }
 
 <div class="banner-wrapper">
-    @*<div class="banner-images"></div>*@
-  
         <div id="mainBanner" class="carousel slide" data-ride="carousel">
             
             <!-- Indicators -->
@@ -80,7 +78,7 @@
 <div class="content-top ">
     <div class="container ">
         <div class="spec ">
-            <h3>Special Offers</h3>
+            <h3>Sản Phẩm</h3>
             <div class="ser-t">
                 <b></b>
                 <span><i></i></span>
@@ -90,8 +88,8 @@
         <div class="tab-head ">
             <nav class="nav-sidebar">
                 <ul class="nav tabs ">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Bakery</a></li>
-                    <li class=""><a href="#tab2" data-toggle="tab">Kitchen Tools</a></li>
+                    <li class="active"><a href="#tab1" data-toggle="tab">Bánh</a></li>
+                    <li class=""><a href="#tab2" data-toggle="tab">Dụng Cụ Nhà Bếp</a></li>
                 </ul>
             </nav>
             <div class=" tab-content tab-content-t ">
@@ -100,7 +98,7 @@
                         @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListBakeryProducts)
                         <div class="clearfix"></div>
                         <div class="row">
-                            @Html.ActionLink("more...", "GetProductByCategory", "Product", new { id = 8 }, new { @class = "pull-right link-more-items" })
+                            @Html.ActionLink("thêm...", "GetProductByCategory", "Product", new { id = 8 }, new { @class = "pull-right link-more-items" })
                         </div>
                     </div>
                 </div>
@@ -109,7 +107,7 @@
                         @Html.Partial("ListProduct", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ListKitChenTools)
                         <div class="clearfix"></div>
                         <div class="row">
-                            @Html.ActionLink("more...", "GetProductByCategory", "Product", new { id = 9 }, new { @class = "pull-right link-more-items" })
+                            @Html.ActionLink("thêm...", "GetProductByCategory", "Product", new { id = 9 }, new { @class = "pull-right link-more-items" })
                         </div>
                     </div>
                 </div>
@@ -128,9 +126,9 @@
                 <a>
                     <img src="~/Content/Images/Banners/cakes-collection.png" class="img-responsive img" alt="">
                     <div class="big-sa">
-                        <h6>New Collections</h6>
-                        <h3>Season<span>ing </span></h3>
-                        <p>There are many variations of cakes for this season </p>
+                        <h6>Sản phẩm mới</h6>
+                        <h3>Mùa <span>Hè </span></h3>
+                        <p>Có thêm nhiều sản phẩm mới chờ đợi quý khách mùa này </p>
                     </div>
                 </a>
             </div>
@@ -141,8 +139,8 @@
                     <img src="~/Content/Images/Banners/big-sale.png" class="img-responsive img" alt="">
                     <div class="big-sale">
                         <div class="big-sale1">
-                            <h3>Big <span>Sale</span></h3>
-                            <p>Big sale for this week</p>
+                            <h3>Giảm <span>Giá</span></h3>
+                            <p>Giảm giá cực sốc</p>
                         </div>
                     </div>
                 </a>
@@ -153,8 +151,8 @@
                 <a>
                     <img src="~/Content/Images/Banners/gift-banner.png" class="img-responsive img1" alt="">
                     <div class="big-sale2">
-                        <h3>Special <span>Gilf</span></h3>
-                        <p>We have specials gilfs for customers </p>
+                        <h3>Quà <span>Đặc Biệt</span></h3>
+                        <p>Những phần quà hấp dẫn đang chờ đón bạn </p>
                     </div>
                 </a>
             </div>
@@ -162,8 +160,8 @@
                 <a>
                     <img src="~/Content/Images/Banners/shipping-banner.png" class="img-responsive img1" alt="">
                     <div class="big-sale3">
-                        <h3>Free <span>Shipping</span></h3>
-                        <p>Free shipping in city</p>
+                        <h3> <span>Vận Chuyển</span></h3>
+                        <p>Miễn phí vận chuyển nội thành</p>
                     </div>
                 </a>
             </div>
@@ -193,14 +191,14 @@
             <a> <img style="height:300px;width:100%;" class="second-slide " src="~/Content/Images/Banners/sub-banner2.png" alt="sweet cake"></a>
             <div class="carousel-caption">
                 <h1>The Bakery Store</h1>
-                <h3>Bring the happiness to your life</h3>
+                <h3>Mang đến niền vui cho mọi nhà</h3>
             </div>
         </div>
         <div class="item">
             <a><img style="height:300px;width:100%;" class="third-slide " src="~/Content/Images/Banners/sub-banner3.png" alt="sweet cake"></a>
             <div class="carousel-caption">
                 <h1>The Bakery Store</h1>
-                <h3>Pleased to be your friend</h3>
+                <h3>Hân hận mang đến sản phẩm tuyệt vời nhất</h3>
             </div>
         </div>
     </div>
@@ -208,7 +206,7 @@
 </div><!-- /.carousel -->
 <!--content-->
 <div class="product">
-    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Special Offers" } })
+    @Html.Partial("_GroupProductsPartial", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.NewProductList, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
 </div>
 
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

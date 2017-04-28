@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace OnlineStoreMVC.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class BaseManagementController : Controller
     {
         #region Properties

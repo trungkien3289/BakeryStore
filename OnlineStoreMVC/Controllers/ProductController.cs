@@ -222,22 +222,22 @@ namespace OnlineStoreMVC.Controllers
             {
                 case SearchType.AllProduct:
                     {
-                        @ViewBag.SearchTitle = "Tất cả các sản phẩm";
+                        ViewBag.SearchTitle = "Tất cả các sản phẩm";
                         break;
                     }
                 case SearchType.SearchString:
                     {
-                        @ViewBag.SearchTitle = request.SearchString;
+                        ViewBag.SearchTitle = request.SearchString;
                         break;
                     }
                 case SearchType.NewProducts:
                     {
-                        @ViewBag.SearchTitle = "Sản phẩm mới";
+                        ViewBag.SearchTitle = "Sản phẩm mới";
                         break;
                     }
                 case SearchType.BestSellProducts:
                     {
-                        @ViewBag.SearchTitle = "Sản phẩm HOT";
+                        ViewBag.SearchTitle = "Sản phẩm HOT";
                         break;
                     }
             }

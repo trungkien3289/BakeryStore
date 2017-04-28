@@ -20,7 +20,7 @@
             <div class="filter-header">
                 <div class="filter-decorator-first-header"></div>
                 <div class="filter-decorator-second-header"></div>
-                <div class="filter-title">Categories</div>
+                <div class="filter-title">Danh Mục</div>
             </div>
             <div class="category-filterItems">
                 @Html.Partial("_CategoryTreeView", (IEnumerable<OnlineStore.Model.ViewModel.SummaryCategoryTreeViewItemModel>)ViewBag.CategoryTreeViewDataSource, new ViewDataDictionary { { "SelectedCategory", Model.SelectedCategory } })
@@ -28,7 +28,7 @@
             <div class="filter-header">
                 <div class="filter-decorator-first-header"></div>
                 <div class="filter-decorator-second-header"></div>
-                <div class="filter-title">Price</div>
+                <div class="filter-title">Giá</div>
             </div>
             <div class="price-filterItems">
                 <div class="price-range-input-panel">
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-9 col-sm-9 col-xs-12 b-productItems">
                 <div class="spec ">
-                    <h3>Products</h3>
+                    <h3>Sản Phẩm</h3>
                     <div class="ser-t">
                         <b></b>
                         <span><i></i></span>
@@ -49,9 +49,9 @@
                     </div>
                 </div>
                 <div class="products-right-grids">
-                    <span class="display hidden-xs pull-right">Have @Model.TotalProducts items</span>
+                    <span class="display hidden-xs pull-right">Có @Model.TotalProducts sản phẩm</span>
                     <div class="sorting">
-                        <label>Order By</label>
+                        <label>Sắp xếp</label>
                         @Html.DropDownList("SortProductOptionsSelectListItems")
                     </div>
                 </div>

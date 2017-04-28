@@ -81,6 +81,9 @@ var SearchProductManagement = {
         }
     },
     bindEvents: function () {
+        // Bind events for add to cart buttons
+        this.initCart();
+
         // brand checkboxs
         $("#layered_block_left input:checkbox.ckb-brand-filtercontent").unbind("change").bind("change", function (sender) {
             var isCheck = $(this).is(":checked");
@@ -108,6 +111,41 @@ var SearchProductManagement = {
             var searchString = $("#tmsearch #tm_search_query").val();
             window.location.replace("/Product/SearchProduct?searchString=" + searchString);
         }
+    },
+    goToCartIcon : function ($addTocartBtn) {
+        var $cartIcon = $(".my-cart-icon");
+        var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({ "position": "fixed", "z-index": "999" });
+        $addTocartBtn.prepend($image);
+        var position = $cartIcon.position();
+        $image.animate({
+            top: position.top,
+            left: position.left
+        }, 500, "linear", function () {
+            $image.remove();
+        });
+    },
+    initCart:function(){
+        $('.my-cart-btn').myCart({
+            classCartIcon: 'my-cart-icon',
+            classCartBadge: 'my-cart-badge',
+            affixCartIcon: true,
+            checkoutCart: function (products) {
+                $.each(products, function () {
+                    console.log(this);
+                });
+                window.location.replace("/Order/CheckOut");
+            },
+            clickOnAddToCart: function ($addTocart) {
+                SearchProductManagement.goToCartIcon($addTocart);
+            },
+            getDiscountPrice: function (products) {
+                var total = 0;
+                $.each(products, function () {
+                    total += this.quantity * this.price;
+                });
+                return total * 1;
+            }
+        });
     },
     updateSelectedBrandList: function (brandId, isAdd) {
         /// <summary>
@@ -223,7 +261,7 @@ var SearchProductManagement = {
         template += "                    <div class=\"clearfix\"><\/div>";
         template += "                <\/div>";
         template += "                <div class=\"add\">";
-        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Add to Cart<\/button>";
+        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Thêm vào giỏ<\/button>";
         template += "                <\/div>";
         template += "            <\/div>";
         template += "        <\/div>";
@@ -232,13 +270,15 @@ var SearchProductManagement = {
         return template;
     },
     getNoResultMessage: function () {
-        return "<li class='noresult-panel'>no results</li>";
+        return "<li class='noresult-panel'>Không tìm thấy sản phẩm nào</li>";
     },
     updateModelAndLayout: function (model) {
         // update title bar
-        $(".b-productItems .products-right-grids .display").text("Have " + model.NumberOfTitlesFound + " items");
+        $(".b-productItems .products-right-grids .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
         // update paging control
         SearchProductManagement.initPagingControl(model.NumberOfTitlesFound, SearchProductManagement.model.NumberOfResultsPerPage);
+
+        SearchProductManagement.bindEvents();
     },
     showSpin: function (target) {
         /// <summary>

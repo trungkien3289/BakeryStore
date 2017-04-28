@@ -285,7 +285,6 @@ var DisplayProductManagement = {
                 $(".list-product-container").append(itemHtml);
             }
         }
-        debugger
         DisplayProductManagement.bindEventForAddCartBtn();
     },
     genarateHtmlProductItem: function (product) {
@@ -313,7 +312,7 @@ var DisplayProductManagement = {
         template += "                    <div class=\"clearfix\"><\/div>";
         template += "                <\/div>";
         template += "                <div class=\"add\">";
-        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Add to Cart<\/button>";
+        template += "                    <button class=\"btn btn-danger my-cart-btn my-cart-b \" data-id=\"1\" data-name=\"" + product.Name + "\" data-summary=\"summary 1\" data-price=\"" + product.Price + "\" data-quantity=\"1\" data-image=\"" + product.CoverImageUrl + "\">Thêm vào giỏ<\/button>";
         template += "                <\/div>";
         template += "            <\/div>";
         template += "        <\/div>";
@@ -322,11 +321,11 @@ var DisplayProductManagement = {
         return template;
     },
     getNoResultMessage:function(){
-        return "<li class='noresult-panel'>no results</li>";
+        return "<li class='noresult-panel'>Không tìm thấy sản phẩm nào</li>";
     },
     updateModelAndLayout: function (model) {
         // update title bar
-        $(".b-productItems .products-right-grids .display").text("Have " + model.NumberOfTitlesFound + " items");
+        $(".b-productItems .products-right-grids .display").text("Có " + model.NumberOfTitlesFound + " sản phẩm");
         // update paging control
         DisplayProductManagement.initPagingControl(model.NumberOfTitlesFound, DisplayProductManagement.model.NumberOfResultsPerPage);
     },
