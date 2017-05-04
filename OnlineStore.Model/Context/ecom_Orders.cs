@@ -36,6 +36,7 @@ namespace OnlineStore.Model.Context
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.Guid> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<System.DateTime> DeliveryDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ecom_OrderDetails> ecom_OrderDetails { get; set; }

@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc
-@using PagedList;
+@using PagedList
 @model IPagedList<OnlineStore.Model.ViewModel.ShortSummaryOrderModel>
 
 @{
@@ -8,6 +8,11 @@
 }
 
 <script src="~/Scripts/Admin/order-management.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -60,6 +65,9 @@
                                 NGÀY TẠO
                             </th>
                             <th>
+                                HẠN GIAO HÀNG
+                            </th>
+                            <th>
                                 TRẠNG THÁI ĐƠN HÀNG
                             </th>
                             <th></th>
@@ -68,9 +76,22 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
+                                    @if (item.DeliveryDate != null && item.DeliveryDate > System.DateTime.Now && ((DateTime)item.DeliveryDate - (DateTime)System.DateTime.Now ).Days <= 2)
+                                    {
+                                        <td style="background-color:red;color:#fff;">
+
+                                            <div data-toggle="tooltip" title="Near to Delivery Date">
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            </div>
+
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                             @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                    }
                                 <td>
                                     @Html.DisplayFor(modelItem => item.NameOfRecipient)
                                 </td>
@@ -79,6 +100,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.CreatedDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DeliveryDateString)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.OrderStatus)

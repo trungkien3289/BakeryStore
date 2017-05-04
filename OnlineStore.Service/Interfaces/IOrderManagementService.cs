@@ -53,7 +53,7 @@ namespace OnlineStore.Service.Interfaces
         /// </summary>
         /// <param name="orderRequest"></param>
         /// <returns></returns>
-        bool UpdateOrder(UpdateOrderModel orderRequest);
+        bool UpdateOrder(ecom_Orders orderRequest);
 
         /// <summary>
         /// Get order object by id for edit

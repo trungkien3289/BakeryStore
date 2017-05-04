@@ -110,7 +110,9 @@ namespace OnlineStore.Service.Implements
                                                                 OrderStatus = EnumHelper.GetDescriptionFromEnum((OrderStatus)o.OrderStatus),
                                                                 PhoneOfRecipient = o.PhoneOfRecipient,
                                                                 AddressOfRecipient = o.AddressOfRecipient,
-                                                                CreatedDate = o.CreatedDate != null ? ((DateTime)o.CreatedDate).ToString("dd/MM/yyyy hh:mm:ss") : ""
+                                                                CreatedDate = o.CreatedDate != null ? ((DateTime)o.CreatedDate).ToString("dd/MM/yyyy hh:mm:ss") : "",
+                                                                DeliveryDateString = o.DeliveryDate != null ? ((DateTime)o.DeliveryDate).ToString("dd/MM/yyyy") : "",
+                                                                DeliveryDate = o.DeliveryDate
                                                             };
            
 
@@ -198,7 +200,7 @@ namespace OnlineStore.Service.Implements
         /// </summary>
         /// <param name="orderRequest"></param>
         /// <returns></returns>
-        public bool UpdateOrder(UpdateOrderModel orderRequest)
+        public bool UpdateOrder(ecom_Orders orderRequest)
         {
             try
             {
@@ -212,7 +214,7 @@ namespace OnlineStore.Service.Implements
                     order.PhoneOfRecipient = orderRequest.PhoneOfRecipient;
                     order.Status = orderRequest.Status;
                     order.OrderStatus = orderRequest.OrderStatus;
-
+                    order.DeliveryDate = orderRequest.DeliveryDate;
                     orderRepository.Update(order);
                     orderRepository.Save();
                     return true;
@@ -244,7 +246,8 @@ namespace OnlineStore.Service.Implements
                     OrderNote = order.OrderNote,
                     OrderStatus = order.OrderStatus,
                     PhoneOfRecipient = order.PhoneOfRecipient,
-                    Status = order.Status
+                    Status = order.Status,
+                    DeliveryDate = order.DeliveryDate!=null?((DateTime)order.DeliveryDate).ToString("dd/MM/yyyy"):""
                 };
 
                 return retValue;

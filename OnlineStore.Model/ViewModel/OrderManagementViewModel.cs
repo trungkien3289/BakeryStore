@@ -56,6 +56,9 @@ namespace OnlineStore.Model.ViewModel
         public string AddressOfRecipient { get; set; }
         [DisplayName("Created Date")]
         public string CreatedDate { get; set; }
+        [DisplayName("Delivery Date Deadline")]
+        public string DeliveryDateString { get; set; }
+        public DateTime? DeliveryDate { get; set; }
     }
 
 }

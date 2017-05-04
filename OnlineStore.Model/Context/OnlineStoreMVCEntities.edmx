@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineStoreMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -169,6 +169,7 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="uniqueidentifier" />
           <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeliveryDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ecom_ProductGroups">
           <Key>
@@ -704,6 +705,7 @@
           <Property Name="ModifiedBy" Type="Guid" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ecom_OrderDetails" Relationship="Self.FK_product_OrderDetails_product_Orders" FromRole="ecom_Orders" ToRole="ecom_OrderDetails" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ecom_Products">
           <Key>
@@ -1204,6 +1206,7 @@
           <EntitySetMapping Name="ecom_Orders">
             <EntityTypeMapping TypeName="OnlineStoreMVCModel.ecom_Orders">
               <MappingFragment StoreEntitySet="ecom_Orders">
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

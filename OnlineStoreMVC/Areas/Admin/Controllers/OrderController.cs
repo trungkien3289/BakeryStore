@@ -151,7 +151,28 @@ namespace OnlineStoreMVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool result = orderService.UpdateOrder(orderRequest);
+                CultureInfo culture = CultureInfo.CreateSpecificCulture("vi-VN");
+                DateTimeStyles styles = DateTimeStyles.None;
+                DateTime outDeliveryDate;
+                if (!DateTime.TryParse(orderRequest.DeliveryDate, culture, styles, out outDeliveryDate))
+                {
+                    return View(orderRequest);
+                }
+
+                ecom_Orders updatedOrder = new ecom_Orders()
+                {
+                    Id = orderRequest.Id,
+                    FeeShip = orderRequest.FeeShip,
+                    AddressOfRecipient = orderRequest.AddressOfRecipient,
+                    NameOfRecipient = orderRequest.NameOfRecipient,
+                    OrderNote = orderRequest.OrderNote,
+                    PhoneOfRecipient = orderRequest.PhoneOfRecipient,
+                    Status = orderRequest.Status,
+                    OrderStatus = orderRequest.OrderStatus,
+                    DeliveryDate = outDeliveryDate
+                };
+
+                bool result = orderService.UpdateOrder(updatedOrder);
 
                 if (result)
                 {

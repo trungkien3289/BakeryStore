@@ -59,6 +59,8 @@ namespace OnlineStore.Model.MessageModel
         [DisplayName("Trạng thái")]
         [Required]
         public Nullable<int> Status { get; set; }
+        [DisplayName("Hạn Giao Hàng")]
+        public string DeliveryDate { get; set; }
 
     }
 
